@@ -1,24 +1,19 @@
 import React from "react";
 import Link from "next/link";
+import "../styles/globals.css";
 
-const App = ({ Component } : any) => {
+const App = ({ Component }: any) => {
   return (
     <>
       <ul>
         <li>
-          <Link href="/home">
-            home
-          </Link>
+          <Link href="/home">home</Link>
         </li>
         <li>
-          <Link href="/search">
-            search
-          </Link>
+          <Link href="/search">search</Link>
         </li>
         <li>
-          <Link href="/detail">
-            detail
-          </Link>
+          <Link href="/detail">detail</Link>
         </li>
       </ul>
       <Component />
