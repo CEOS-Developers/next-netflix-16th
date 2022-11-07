@@ -1,6 +1,9 @@
 .container {
-  color: black;
+  color: #fff;
   padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main {
@@ -11,6 +14,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid #fff;
+  background: yellow;
 }
 
 .footer {
