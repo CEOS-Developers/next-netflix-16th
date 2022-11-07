@@ -1,8 +1,13 @@
 import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigator";
 import styled from "styled-components";
+
 import logo from "../asset/home/logo.png"
 import movEx from "../asset/movEx.png"
+import info1 from "../asset/home/info1.png";
+import info2 from "../asset/home/info2.png";
+import info3 from "../asset/home/info3.png";
+
 
 const title = ['Now Playing', 'Top Rated', 'Popular'];
 const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
@@ -19,19 +24,24 @@ export default function Home() {
         </Header>
         <MainImg src={movEx.src}/>
 
-        <CategoryBox>
+        <InfoBox> 
+          <img src={info1.src}/>
+          <img src={info2.src}/>
+          <img src={info3.src}/>
+        </InfoBox>
+        
+        <div style={{justifyContent:"start"}}>
           <CategoryText> Previews </CategoryText>
-            <MovieList>
-              {picture.map((pic)=>(
-                <RoundImg src={pic.src}/>
-                ))
-              }
-            </MovieList>
-        </CategoryBox>
-
+          <MovieList>
+            {picture.map((pic)=>(
+              <RoundImg src={pic.src}/>
+              ))
+            }
+          </MovieList>
+        </div>
 
         {title.map((item)=>(
-          <CategoryBox>
+          <div style={{justifyContent:"start"}}>
             <CategoryText> {item} </CategoryText>
             <MovieList>
               {picture.map((pic)=>(
@@ -39,11 +49,11 @@ export default function Home() {
                 ))
               }
             </MovieList>
-          </CategoryBox>
+          </div>
         ))}
 
         <div style={{height: "5rem"}}/>
-        
+
         <Navigator/>
       </main>
     </div>
@@ -71,10 +81,12 @@ const MainImg = styled.img`
   width: 100%;
   margin-top: -5rem;
 `
-
-const CategoryBox = styled.div`
-  flex-direction: column;
-  align-items: start;
+const InfoBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  margin-bottom: 2rem;
 `
 
 const CategoryText = styled.div`
