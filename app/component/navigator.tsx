@@ -43,7 +43,8 @@ const Container = styled.div`
   width: 400px;
   height: 5rem;
   background-color: #121212;
-  
+  position: fixed;
+  bottom: 0;
 `
 const NaviContainer = styled.div`
   display: flex;
