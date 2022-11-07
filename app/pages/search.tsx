@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        IndexPage
+        SearchPage
       </main>
     </div>
   )

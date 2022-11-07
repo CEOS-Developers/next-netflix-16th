@@ -1,6 +1,29 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import React from "react";
+import Link from "next/link";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const App = ({ Component } : any) => {
+  return (
+    <>
+      <ul>
+        <li>
+          <Link href="/home">
+            home
+          </Link>
+        </li>
+        <li>
+          <Link href="/search">
+            search
+          </Link>
+        </li>
+        <li>
+          <Link href="/detail">
+            detail
+          </Link>
+        </li>
+      </ul>
+      <Component />
+    </>
+  );
+};
+
+export default App;
