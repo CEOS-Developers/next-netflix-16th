@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigator";
 import styled from "styled-components";
 import SearchItem from "../component/searchItem";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -9,7 +10,13 @@ export default function Home() {
       <main className={styles.main}>
         <Wrap>
           <ImgWrap>
-            <img src="/search.png" alt="search" />
+            {/* <img src="/search.png" alt="search" /> */}
+            <Image
+              src="/asset/icons/searchIcon.svg"
+              alt="search"
+              width={15}
+              height={15}
+            />
           </ImgWrap>
           <Input type="text" placeholder="Search for movie" />
           <ImgWrap>
