@@ -1,9 +1,28 @@
 import styles from "../styles/Home.module.css";
+import { useEffect } from "react";
+import netflix from "../asset/netflix.gif";
+import styled from "styled-components";
 
 export default function Home() {
+
+  useEffect(() => {
+    setTimeout(function(){
+      location.href='home';
+    }, 2000)
+  });
+
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>넷플릭스 로고 띄워야함</main>
-    </div>
+    <Container>
+      <GIF src={netflix.src}/>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  display: relative;
+`
+const GIF = styled.img`
+  position: absolute;
+  top: 20%;
+  width: 100%;
+`
