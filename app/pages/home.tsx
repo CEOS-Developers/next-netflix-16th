@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 import logo from "../asset/home/logo.png";
 import movEx from "../asset/movEx.png";
-import info1 from "../asset/home/info1.png";
-import info2 from "../asset/home/info2.png";
-import info3 from "../asset/home/info3.png";
+import info1 from "../asset/home/info1.svg";
+import info2 from "../asset/home/info2.svg";
+import info3 from "../asset/home/info3.svg";
 
 const title = ["Now Playing", "Top Rated", "Popular"];
 const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
