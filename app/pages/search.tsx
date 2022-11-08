@@ -18,7 +18,7 @@ export default function Home() {
               height={15}
             />
           </ImgWrap>
-          <Input type="text" placeholder="Search for movie" />
+          <Input type="text" placeholder="Search for movies" />
           <ImgWrap>
             <img src="/search.png" alt="search" />
           </ImgWrap>
