@@ -3,6 +3,7 @@ import Navigator from "../component/navigator";
 import styled from "styled-components";
 import SearchItem from "../component/searchItem";
 import Image from "next/image";
+import search from "../asset/icons/searchIcon.svg"
 
 export default function Home() {
   return (
@@ -12,16 +13,16 @@ export default function Home() {
           <ImgWrap>
             {/* <img src="/search.png" alt="search" /> */}
             <Image
-              src="/asset/icons/searchIcon.svg"
+              src={search}
               alt="search"
               width={15}
               height={15}
             />
           </ImgWrap>
           <Input type="text" placeholder="Search for movies" />
-          <ImgWrap>
+          {/* <ImgWrap>
             <img src="/search.png" alt="search" />
-          </ImgWrap>
+          </ImgWrap> */}
         </Wrap>
 
         <div>
