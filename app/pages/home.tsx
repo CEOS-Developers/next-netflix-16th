@@ -7,11 +7,41 @@ import movEx from "../asset/movEx.png";
 import info1 from "../asset/home/info1.svg";
 import info2 from "../asset/home/info2.svg";
 import info3 from "../asset/home/info3.svg";
+import { useEffect, useState } from "react";
+
+import api from '../asset/api'
+import apiKey from '../asset/apiKey'
+import imgPath from '../asset/imgPath'
 
 const title = ["Now Playing", "Top Rated", "Popular"];
 const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
 
 export default function Home() {
+  
+  const [imgList, setImg] = useState([] as any);
+  // let imgList = [] as any;
+
+  useEffect(() => {
+    const movie_id=550;
+    // https://developers.themoviedb.org/3/movies/get-movie-images : 영화이미지
+    // fetch(`${api}/movie/${movie_id}/images?api_key=${apiKey}`)
+    // fetch(`${api}/movie/${movie_id}?api_key=${apiKey}`)
+    // fetch(`${api}/movie/latest?api_key=${apiKey}`)
+    
+    // 최신 영화 이미지 리스트 나옴. 영화 19개
+    // fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+
+    fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+      .then(res=>res.json())
+      .then(data => {
+        let newList = [...imgList];
+        data.results.map((item : any)=>{
+          newList = newList.concat(item.backdrop_path);
+          setImg(newList);
+        })
+      })
+  },[])
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -32,8 +62,8 @@ export default function Home() {
         <div style={{ justifyContent: "start" }}>
           <CategoryText> Previews </CategoryText>
           <MovieList>
-            {picture.map((pic) => (
-              <RoundImg src={pic.src} />
+            {imgList.map((pic : any) => (
+              <RoundImg src={`${imgPath}/${pic}`} />
             ))}
           </MovieList>
         </div>
