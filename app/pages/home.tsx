@@ -1,17 +1,19 @@
 import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigator";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import logo from "../asset/home/logo.png";
 import movEx from "../asset/movEx.png";
 import info1 from "../asset/home/info1.svg";
 import info2 from "../asset/home/info2.svg";
 import info3 from "../asset/home/info3.svg";
-import { useEffect, useState } from "react";
 
 import api from '../asset/api'
 import apiKey from '../asset/apiKey'
 import imgPath from '../asset/imgPath'
+
 
 const title = ["Now Playing", "Top Rated", "Popular"];
 const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
@@ -27,14 +29,11 @@ export default function Home() {
     // fetch(`${api}/movie/latest?api_key=${apiKey}`)
     
     // 최신 영화 이미지 리스트 나옴. 영화 19개
-    // fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-
     fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
       .then(res=>res.json())
       .then(data => {
         console.log(data);
         setInfo(data.results);
-        console.log(info);
       })
   },[])
 
@@ -59,7 +58,12 @@ export default function Home() {
           <CategoryText> Previews </CategoryText>
           <MovieList>
             {info.map((item : any) => (
-              <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
+              <Link href={{
+                pathname: '/detail',
+                query: {id:item.id}
+              }}>
+                <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
+              </Link>
             ))}
           </MovieList>
         </div>
@@ -70,7 +74,9 @@ export default function Home() {
             <MovieList>
             {info.map((item : any, idx : number) => (
               count*5+5<=idx && count*5+10 >idx?
-              <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
+              <Link href={`/detail?id=${item.id}`}>
+                <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
+              </Link>
               : <></>
             ))}
             </MovieList>

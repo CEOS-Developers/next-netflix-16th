@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigator";
+import { useRouter } from 'next/router'
+import { useEffect, useState } from "react";
+
+import api from '../asset/api'
+import apiKey from '../asset/apiKey'
+import imgPath from '../asset/imgPath'
 
 interface imgSize {
   width?: string;
@@ -8,11 +14,26 @@ interface imgSize {
 }
 
 export default function Detail() {
+  const router = useRouter()
+  const movieId = router.query.id;
+  console.log(movieId);
+
+  const [movie, setMovie] = useState([] as any);
+
+  useEffect(() => {
+    fetch(`${api}/movie/${movieId}?api_key=${apiKey}`)
+      .then(res=>res.json())
+      .then(data => {
+        console.log(data);
+        setMovie(data);
+      })
+  },[])
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <ImgWrap>
-          <img src="/poster.jpg" alt="poster" style={{ width: "100%" }} />
+          <img src={`${imgPath}/${movie.backdrop_path}`} alt="poster" style={{ width: "100%" }} />
         </ImgWrap>
         <PlayBtn>
           <img
@@ -25,13 +46,15 @@ export default function Detail() {
         <TextWrap>
           <TextTitle>Previews</TextTitle>
           <TextDesc>
-            Uta — the most beloved singer in the world. Her voice, which she
+            {movie.overview}
+            
+            {/* Uta — the most beloved singer in the world. Her voice, which she
             sings with while concealing her true identity, has been described as
             “otherworldly.” She will appear in public for the first time at a
             live concert. As the venue fills with all kinds of Uta fans —
             excited pirates, the Navy watching closely, and the Straw Hats led
             by Luffy who simply came to enjoy her sonorous performance — the
-            voice that the whole world has been waiting for is about to resound.
+            voice that the whole world has been waiting for is about to resound. */}
           </TextDesc>
         </TextWrap>
         <div style={{ height: "5rem" }} />
@@ -61,7 +84,6 @@ const PlayBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
   font-size: 18px;
   font-weight: 600;
 `;
