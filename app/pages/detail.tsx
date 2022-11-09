@@ -35,7 +35,7 @@ export default function Detail() {
     <div className={styles.container}>
       <main className={styles.main}>
         <ImgWrap>
-          <img src={`${imgPath}/${movie.backdrop_path}`} alt="poster" style={{ width: "100%" }} />
+          <img src={`${imgPath}/${movie.backdrop_path}`} alt="poster" style={{ height: "30rem", marginLeft:"-55%" }} />
         </ImgWrap>
         <PlayBtn>
           <Image src={play} alt="playbtn" />
@@ -56,6 +56,7 @@ export default function Detail() {
 
 const ImgWrap = styled.div`
   width: 400px;
+  height: 30rem;
   overflow: hidden;
 `;
 

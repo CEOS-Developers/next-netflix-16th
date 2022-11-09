@@ -14,7 +14,7 @@ import api from '../asset/api'
 import apiKey from '../asset/apiKey'
 import imgPath from '../asset/imgPath'
 
-const title = ["Now Playing", "Top Rated", "Popular"];
+const title = ["Now Playing", "Top Rated", "Popular", "My List"];
 
 export default function Home() {
   const [info, setInfo] = useState([] as any);
@@ -64,9 +64,11 @@ export default function Home() {
             <CategoryText> {title} </CategoryText>
             <MovieList>
             {info.map((item : any, idx : number) => (
-              count*5+5<=idx && count*5+10 >idx?
+              count*4+4<=idx && count*4+8 >idx?
               <Link href={`/detail?id=${item.id}`}>
-                <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
+                <div style={{ width: "6.5rem", height: "10rem", marginRight: "0.5rem", overflow: "hidden"}}>
+                  <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
+                </div>
               </Link>
               : <></>
             ))}
@@ -121,9 +123,7 @@ const MovieList = styled.div`
   display: flex;
   flex-direction: row;
   width: 400px;
-  overflow: scroll;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 `;
 
 const RoundImg = styled.img`
@@ -133,7 +133,6 @@ const RoundImg = styled.img`
   border-radius: 50rem;
 `;
 const SquareImg = styled.img`
-  width: 6.5rem;
-  height: 10rem;
-  margin-left: 0.5rem;
+  height: 100%;
+  margin-left: -85%;
 `;
