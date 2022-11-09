@@ -31,7 +31,6 @@ const TrendingWrapper = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-  background-color: green;
   width: 100%;
 `;
 const MovieImage = styled.img`
