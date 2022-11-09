@@ -13,21 +13,19 @@ import info3 from "../asset/img/home/info3.svg";
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
 import imgPath from "../asset/imgPath";
-import setData from '../page';
-import {showMovieList} from './api/movieList';
-import axios from 'axios';
+import setData from "../page";
+import { showMovieList } from "./api/movieList";
 
 const title = ["Now Playing", "Top Rated", "Popular", "My List"];
 
 export async function getServerSideProps() {
- 
-  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-  const data = await res.json()
+  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`);
+  const data = await res.json();
 
-  return { props: { data } }
+  return { props: { data } };
 }
 
-export default function Home( { data }) {
+export default function Home({ data }) {
   //const [info, setInfo] = useState([] as any);
 
   // fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
@@ -70,7 +68,7 @@ export default function Home( { data }) {
           <div style={{ justifyContent: "start" }}>
             <CategoryText> {title} </CategoryText>
             <MovieList>
-            {/* {info.map((item : any, idx : number) => (
+              {/* {info.map((item : any, idx : number) => (
               count*4+4<=idx && count*4+8 >idx?
               <Link href={`/detail?id=${item.id}`}>
                 <div style={{ width: "6.5rem", height: "10rem", marginRight: "0.5rem", overflow: "hidden"}}>
@@ -126,7 +124,7 @@ const CategoryText = styled.div`
   margin-top: 1.5rem;
   margin-left: 1rem;
   margin-bottom: 1.5rem;
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   font-weight: 700;
 `;
 

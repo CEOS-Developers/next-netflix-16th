@@ -11,19 +11,18 @@ import { useEffect, useState } from "react";
 import useInput from "../component/hooks/useInput";
 import Link from "next/link";
 
-// async function getData() {
-//   const movieItems = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`);
-//   console.log(movieItems.json());
+export async function getServerSideProps() {
+  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`);
+  const data = await res.json();
 
-//    return movieItems.json();
-// }
+  return { props: { data: data } };
+}
 
 export default function Search({ data }: any) {
   const [info, setInfo] = useState([] as any);
   const { text, handleChange, resetText } = useInput("");
 
-  // const data = getData();
-  console.log(data);
+  const movieData = data.results;
 
   useEffect(() => {
     fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
@@ -52,7 +51,7 @@ export default function Search({ data }: any) {
 
         <div>
           <Title>Top Searches</Title>
-          {info
+          {movieData
             .filter((i: any) =>
               i.title.toLowerCase().includes(text.toLowerCase())
             )
@@ -72,13 +71,6 @@ export default function Search({ data }: any) {
       </main>
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`);
-  const data = await res.json();
-
-  return { props: { data: data } };
 }
 
 const Wrap = styled.div`
