@@ -13,20 +13,27 @@ import info3 from "../asset/img/home/info3.svg";
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
 import imgPath from "../asset/imgPath";
+import setData from '../page';
+import {showMovieList} from './api/movieList';
+import axios from 'axios';
 
 const title = ["Now Playing", "Top Rated", "Popular", "My List"];
 
-export default function Home() {
-  const [info, setInfo] = useState([] as any);
+export async function getServerSideProps() {
+ 
+  const res = await axios.get(`${api}/movie/now_playing?api_key=${apiKey}`)
+  const data = res.data
 
-  useEffect(() => {
-    fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setInfo(data.results);
-      })
-  },[])
+  return { props: { data } }
+}
+
+export default function Home( { data }) {
+  //const [info, setInfo] = useState([] as any);
+
+  // fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+  // .then(data=>console.log(data.json()))
+
+  console.log(data);
 
   return (
     <div className={styles.container}>
@@ -48,14 +55,14 @@ export default function Home() {
         <div style={{ justifyContent: "start" }}>
           <CategoryText> Previews </CategoryText>
           <MovieList>
-            {info.map((item : any) => (
+            {/* {info.map((item : any) => (
               <Link href={{
                 pathname: '/detail',
                 query: {id:item.id}
               }}>
                 <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
               </Link>
-            ))}
+            ))} */}
           </MovieList>
         </div>
 
@@ -63,7 +70,7 @@ export default function Home() {
           <div style={{ justifyContent: "start" }}>
             <CategoryText> {title} </CategoryText>
             <MovieList>
-            {info.map((item : any, idx : number) => (
+            {/* {info.map((item : any, idx : number) => (
               count*4+4<=idx && count*4+8 >idx?
               <Link href={`/detail?id=${item.id}`}>
                 <div style={{ width: "6.5rem", height: "10rem", marginRight: "0.5rem", overflow: "hidden"}}>
@@ -71,7 +78,7 @@ export default function Home() {
                 </div>
               </Link>
               : <></>
-            ))}
+            ))} */}
             </MovieList>
           </div>
         ))}
