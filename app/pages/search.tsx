@@ -7,20 +7,20 @@ import search from "../asset/img/icons/searchIcon.svg";
 import close from "../asset/img/icons/close.svg";
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
-import { useEffect, useState } from "react";
 import useInput from "../component/hooks/useInput";
+import Link from "next/link";
 
-export default function Home() {
-  const [info, setInfo] = useState([] as any);
+export async function getServerSideProps() {
+  const res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
+  const data = await res.json();
+
+  return { props: { data: data } };
+}
+
+export default function Search({ data }: any) {
   const { text, handleChange, resetText } = useInput("");
 
-  useEffect(() => {
-    fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setInfo(data.results);
-      });
-  }, []);
+  const movieData = data.results;
 
   return (
     <div className={styles.container}>
@@ -41,12 +41,19 @@ export default function Home() {
 
         <div>
           <Title>Top Searches</Title>
-          {info
+          {movieData
             .filter((i: any) =>
               i.title.toLowerCase().includes(text.toLowerCase())
             )
             .map((movie: any) => (
-              <SearchItem name={movie.title} imgSrc={movie.backdrop_path} />
+              <Link
+                href={{
+                  pathname: "/detail",
+                  query: { id: movie.id },
+                }}
+              >
+                <SearchItem name={movie.title} imgSrc={movie.backdrop_path} />
+              </Link>
             ))}
         </div>
 

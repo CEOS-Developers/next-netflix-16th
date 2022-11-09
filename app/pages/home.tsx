@@ -14,8 +14,6 @@ import api from "../asset/api";
 import apiKey from "../asset/apiKey";
 import imgPath from "../asset/imgPath";
 
-// latest, now_playing, popular, top_rated, upcoming
-
 export default function Home( { latest, now_playing, popular, top_rated, upcoming } : any) {
 
   const title = [
@@ -133,7 +131,7 @@ const CategoryText = styled.div`
   margin-top: 1.5rem;
   margin-left: 1rem;
   margin-bottom: 1.5rem;
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   font-weight: 700;
 `;
 
