@@ -40,11 +40,7 @@ const MovieImage = styled.img`
   width: 103px;
   height: 161px;
   cursor: pointer;
-  border-radius: 1px;
-  margin-top: 20px;
-  :hover {
-    transform: scale(1.05) translateY(-10px);
-  }
+  border-radius: 2px;
 `;
 
 export const MovieItemWrapper = styled.div`

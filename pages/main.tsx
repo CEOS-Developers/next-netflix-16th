@@ -1,4 +1,5 @@
 import axios from 'axios';
+import styled from 'styled-components';
 import { API } from './components/API/API';
 import MovieFetch from './components/Main/mainMovieFetch';
 import Poster from './components/Main/Poster';
@@ -21,16 +22,16 @@ function MainPage({
   return (
     <>
       <Poster randomMovieArray={randomMovieArray} />
-      <div>Trending</div>
+      <Title>Trending</Title>
       <MovieFetch movieData={previewData} />
 
-      <div>Popular</div>
+      <Title>Popular</Title>
       <MovieFetch movieData={popularData} />
 
-      <div>Now Playing</div>
+      <Title>Now Playing</Title>
       <MovieFetch movieData={nowPlayingData} />
 
-      <div>Top Rated</div>
+      <Title>Top Rated</Title>
       <MovieFetch movieData={topRatedData} />
     </>
   );
@@ -41,11 +42,8 @@ export default MainPage;
 export async function getServerSideProps() {
   try {
     const response = await axios.get(`${API.Preview}`);
-
     const response2 = await axios.get(`${API.Popular}`);
-
     const response3 = await axios.get(`${API.NowPlaying}`);
-
     const response4 = await axios.get(`${API.TopRated}`);
 
     const previewData = response.data.results;
@@ -66,3 +64,10 @@ export async function getServerSideProps() {
     return { props: {} };
   }
 }
+
+const Title = styled.div`
+  line-height: 16px;
+  margin-left: 16px;
+  margin-top: 22px;
+  margin-bottom: 14px;
+`;

@@ -19,7 +19,8 @@ export default Navigator;
 const NavigatorWrapper = styled.div`
   display: flex;
   flex-direction: columns;
-  position: fixed;
+  position: sticky;
   background-color: red;
   bottom: 0;
+  padding-bottom: 48px;
 `;
