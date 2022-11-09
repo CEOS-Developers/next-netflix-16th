@@ -13,27 +13,17 @@ import info3 from "../asset/img/home/info3.svg";
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
 import imgPath from "../asset/imgPath";
-import setData from '../page';
-import {showMovieList} from './api/movieList';
-import axios from 'axios';
 
-const title = ["Now Playing", "Top Rated", "Popular", "My List"];
+// latest, now_playing, popular, top_rated, upcoming
 
-export async function getServerSideProps() {
- 
-  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-  const data = await res.json()
+export default function Home( { latest, now_playing, popular, top_rated, upcoming } : any) {
 
-  return { props: { data } }
-}
-
-export default function Home( { data }) {
-  //const [info, setInfo] = useState([] as any);
-
-  // fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-  // .then(data=>console.log(data.json()))
-
-  console.log(data);
+  const title = [
+    {"title": "Now Playing", "path": now_playing},
+    {"title": "Top Rated", "path":top_rated},
+    {"title": "Popular", "path": popular},
+    {"title": "Upcoming", "path": upcoming},
+  ]
 
   return (
     <div className={styles.container}>
@@ -55,30 +45,27 @@ export default function Home( { data }) {
         <div style={{ justifyContent: "start" }}>
           <CategoryText> Previews </CategoryText>
           <MovieList>
-            {/* {info.map((item : any) => (
-              <Link href={{
-                pathname: '/detail',
-                query: {id:item.id}
-              }}>
-                <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
+            {upcoming.results.map((item : any, idx : number) => (
+              <Link href={`/detail?id=${item.id}`}>
+                <div style={{ width: "7rem", height: "7rem", marginRight: "1rem", overflow: "hidden"}}>
+                  <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
+                </div>
               </Link>
-            ))} */}
+            ))}
           </MovieList>
         </div>
 
-        {title.map((title, count) => (
+        {title.map((items) => (
           <div style={{ justifyContent: "start" }}>
-            <CategoryText> {title} </CategoryText>
+            <CategoryText> {items.title} </CategoryText>
             <MovieList>
-            {/* {info.map((item : any, idx : number) => (
-              count*4+4<=idx && count*4+8 >idx?
+            {items.path.results.map((item : any, idx : number) => (
               <Link href={`/detail?id=${item.id}`}>
                 <div style={{ width: "6.5rem", height: "10rem", marginRight: "0.5rem", overflow: "hidden"}}>
                   <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
                 </div>
               </Link>
-              : <></>
-            ))} */}
+            ))}
             </MovieList>
           </div>
         ))}
@@ -89,6 +76,26 @@ export default function Home( { data }) {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+
+  let res = await fetch(`${api}/movie/latest?api_key=${apiKey}`)
+  const latest = await res.json()
+ 
+  res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+  const now_playing = await res.json()
+
+  res = await fetch(`${api}/movie/popular?api_key=${apiKey}`)
+  const popular = await res.json()
+
+  res = await fetch(`${api}/movie/top_rated?api_key=${apiKey}`)
+  const top_rated = await res.json()
+
+  res = await fetch(`${api}/movie/upcoming?api_key=${apiKey}`)
+  const upcoming = await res.json()
+
+  return { props: { latest, now_playing, popular, top_rated, upcoming } }
 }
 
 const Header = styled.div`
