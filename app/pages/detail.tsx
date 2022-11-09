@@ -47,14 +47,6 @@ export default function Detail() {
           <TextTitle>Previews</TextTitle>
           <TextDesc>
             {movie.overview}
-            
-            {/* Uta — the most beloved singer in the world. Her voice, which she
-            sings with while concealing her true identity, has been described as
-            “otherworldly.” She will appear in public for the first time at a
-            live concert. As the venue fills with all kinds of Uta fans —
-            excited pirates, the Navy watching closely, and the Straw Hats led
-            by Luffy who simply came to enjoy her sonorous performance — the
-            voice that the whole world has been waiting for is about to resound. */}
           </TextDesc>
         </TextWrap>
         <div style={{ height: "5rem" }} />

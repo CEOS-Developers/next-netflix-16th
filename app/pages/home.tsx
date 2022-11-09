@@ -14,21 +14,12 @@ import api from '../asset/api'
 import apiKey from '../asset/apiKey'
 import imgPath from '../asset/imgPath'
 
-
 const title = ["Now Playing", "Top Rated", "Popular"];
-const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
 
 export default function Home() {
   const [info, setInfo] = useState([] as any);
 
   useEffect(() => {
-    const movie_id=550;
-    // https://developers.themoviedb.org/3/movies/get-movie-images : 영화이미지
-    // fetch(`${api}/movie/${movie_id}/images?api_key=${apiKey}`)
-    // fetch(`${api}/movie/${movie_id}?api_key=${apiKey}`)
-    // fetch(`${api}/movie/latest?api_key=${apiKey}`)
-    
-    // 최신 영화 이미지 리스트 나옴. 영화 19개
     fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
       .then(res=>res.json())
       .then(data => {
