@@ -9,6 +9,7 @@ import api from "../asset/api";
 import apiKey from "../asset/apiKey";
 import { useEffect, useState } from "react";
 import useInput from "../component/hooks/useInput";
+import Link from "next/link";
 
 export default function Home() {
   const [info, setInfo] = useState([] as any);
@@ -46,7 +47,14 @@ export default function Home() {
               i.title.toLowerCase().includes(text.toLowerCase())
             )
             .map((movie: any) => (
-              <SearchItem name={movie.title} imgSrc={movie.backdrop_path} />
+              <Link
+                href={{
+                  pathname: "/detail",
+                  query: { id: movie.id },
+                }}
+              >
+                <SearchItem name={movie.title} imgSrc={movie.backdrop_path} />
+              </Link>
             ))}
         </div>
 
