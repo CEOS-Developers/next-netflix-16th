@@ -10,8 +10,8 @@ import Link from "next/link";
 const naviList = [
   { id: 0, src: navi1.src, text: "Home", link: "/home" },
   { id: 1, src: navi2.src, text: "Search", link: "/search" },
-  { id: 2, src: navi3.src, text: "Coming Soon", link: "/home" },
-  { id: 3, src: navi4.src, text: "Downloads", link: "/home" },
+  { id: 2, src: navi3.src, text: "Coming Soon", link: "" },
+  { id: 3, src: navi4.src, text: "Downloads", link: "" },
   { id: 4, src: navi5.src, text: "More", link: "/detail" },
 ];
 
