@@ -64,12 +64,14 @@ export default function Home() {
           </MovieList>
         </div>
 
-        {title.map((item) => (
+        {title.map((title, count) => (
           <div style={{ justifyContent: "start" }}>
-            <CategoryText> {item} </CategoryText>
+            <CategoryText> {title} </CategoryText>
             <MovieList>
-            {info.map((item : any) => (
+            {info.map((item : any, idx : number) => (
+              count*5+5<=idx && count*5+10 >idx?
               <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
+              : <></>
             ))}
             </MovieList>
           </div>
