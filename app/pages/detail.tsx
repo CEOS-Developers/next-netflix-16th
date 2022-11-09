@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import api from '../asset/api'
 import apiKey from '../asset/apiKey'
 import imgPath from '../asset/imgPath'
+import Image from "next/image";
+import play from "../asset/icons/play.svg";
 
 interface imgSize {
   width?: string;
@@ -36,11 +38,7 @@ export default function Detail() {
           <img src={`${imgPath}/${movie.backdrop_path}`} alt="poster" style={{ width: "100%" }} />
         </ImgWrap>
         <PlayBtn>
-          <img
-            src="/right-arrow.png"
-            alt="arrow"
-            style={{ width: "20px", height: "20px", marginRight: "10px" }}
-          />
+          <Image src={play} alt="playbtn" />
           <div>Play</div>
         </PlayBtn>
         <TextWrap>

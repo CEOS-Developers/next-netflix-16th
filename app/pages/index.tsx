@@ -8,7 +8,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(function(){
       location.href='home';
-    }, 1300)
+    }, 1000)
   });
 
   return (
