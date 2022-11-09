@@ -66,13 +66,8 @@ export default function Detail() {
 
 const ImgWrap = styled.div`
   width: 400px;
-  height: 415px;
   overflow: hidden;
 `;
-
-// const Img = styled.img`
-//   width: 100%;
-// `;
 
 const PlayBtn = styled.button`
   color: #000;
@@ -84,6 +79,7 @@ const PlayBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
   font-size: 18px;
   font-weight: 600;
 `;

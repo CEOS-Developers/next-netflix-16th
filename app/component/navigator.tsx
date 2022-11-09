@@ -12,7 +12,7 @@ const naviList = [
   { id: 1, src: navi2.src, text: "Search", link: "/search" },
   { id: 2, src: navi3.src, text: "Coming Soon", link: "" },
   { id: 3, src: navi4.src, text: "Downloads", link: "" },
-  { id: 4, src: navi5.src, text: "More", link: "/detail" },
+  { id: 4, src: navi5.src, text: "More", link: "" },
 ];
 
 const Navigator = () => {
