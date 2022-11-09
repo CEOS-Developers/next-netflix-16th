@@ -8,7 +8,7 @@ import api from '../asset/api'
 import apiKey from '../asset/apiKey'
 import imgPath from '../asset/imgPath'
 import Image from "next/image";
-import play from "../asset/icons/play.svg";
+import play from "../asset/img/icons/play.svg";
 
 interface imgSize {
   width?: string;

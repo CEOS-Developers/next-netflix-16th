@@ -1,6 +1,6 @@
 import styles from "../styles/Home.module.css";
 import { useEffect } from "react";
-import netflix from "../asset/netflix1.gif";
+import netflix from "../asset/img/netflix1.gif";
 import styled from "styled-components";
 
 export default function Home() {

@@ -4,11 +4,11 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import logo from "../asset/home/logo.png";
-import movEx from "../asset/movEx.png";
-import info1 from "../asset/home/info1.svg";
-import info2 from "../asset/home/info2.svg";
-import info3 from "../asset/home/info3.svg";
+import logo from "../asset/img/home/logo.png";
+import movEx from "../asset/img/movEx.png";
+import info1 from "../asset/img/home/info1.svg";
+import info2 from "../asset/img/home/info2.svg";
+import info3 from "../asset/img/home/info3.svg";
 
 import api from '../asset/api'
 import apiKey from '../asset/apiKey'

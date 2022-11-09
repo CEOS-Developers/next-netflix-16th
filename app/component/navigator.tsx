@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import navi1 from "../asset/navigator/navi1.svg";
-import navi2 from "../asset/navigator/navi2.svg";
-import navi3 from "../asset/navigator/navi3.svg";
-import navi4 from "../asset/navigator/navi4.svg";
-import navi5 from "../asset/navigator/navi5.svg";
+import navi1 from "../asset/img/navigator/navi1.svg";
+import navi2 from "../asset/img/navigator/navi2.svg";
+import navi3 from "../asset/img/navigator/navi3.svg";
+import navi4 from "../asset/img/navigator/navi4.svg";
+import navi5 from "../asset/img/navigator/navi5.svg";
 import Link from "next/link";
 
 const naviList = [

@@ -3,8 +3,8 @@ import Navigator from "../component/navigator";
 import styled from "styled-components";
 import SearchItem from "../component/searchItem";
 import Image from "next/image";
-import search from "../asset/icons/searchIcon.svg";
-import close from "../asset/icons/close.svg";
+import search from "../asset/img/icons/searchIcon.svg";
+import close from "../asset/img/icons/close.svg";
 
 export default function Home() {
   return (
