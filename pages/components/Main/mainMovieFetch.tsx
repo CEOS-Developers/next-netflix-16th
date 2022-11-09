@@ -1,20 +1,22 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import { BlockLike } from 'typescript';
 import { IMovie, IMovieData } from '../../Interface/interface';
 import { URL } from '../API/API';
 
-
-function MovieFetch({ movieData }: IMovieData) {
+function MovieFetch({ movieData, trending }: any) {
   if (!movieData) return null;
 
   return (
     <TrendingWrapper>
       {movieData.map((movieItem: IMovie) => (
         <MovieItemWrapper key={movieItem.id}>
-            <Link href={`/detail/${movieItem.id}`}>
-          <div>
-            <MovieImage src={`${URL.PostPath}/${movieItem.poster_path}`} />
-          </div></Link>
+          <Link href={`/detail/${movieItem.id}`}>
+            <MovieImage
+              src={`${URL.PostPath}/${movieItem.poster_path}`}
+              trending={trending}
+            />
+          </Link>
         </MovieItemWrapper>
       ))}
     </TrendingWrapper>
@@ -27,7 +29,6 @@ const TrendingWrapper = styled.div`
   display: flex;
   flex-direction: columns;
   width: 103px;
-  height: 161px;
   overflow-x: scroll;
   overflow-y: hidden;
 
@@ -36,11 +37,12 @@ const TrendingWrapper = styled.div`
   }
   width: 100%;
 `;
-const MovieImage = styled.img`
+const MovieImage = styled.img<{ trending: boolean }>`
   width: 103px;
-  height: 161px;
+  height: ${({ trending }) => (trending ? `90px` : `161px`)};
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: ${({ trending }) => (trending ? `50%` : `2px`)};
+  object-fit: cover;
 `;
 
 export const MovieItemWrapper = styled.div`
