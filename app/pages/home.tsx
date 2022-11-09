@@ -17,9 +17,7 @@ const title = ["Now Playing", "Top Rated", "Popular"];
 const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
 
 export default function Home() {
-  
-  const [imgList, setImg] = useState([] as any);
-  // let imgList = [] as any;
+  const [info, setInfo] = useState([] as any);
 
   useEffect(() => {
     const movie_id=550;
@@ -34,11 +32,9 @@ export default function Home() {
     fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
       .then(res=>res.json())
       .then(data => {
-        let newList = [...imgList];
-        data.results.map((item : any)=>{
-          newList = newList.concat(item.backdrop_path);
-          setImg(newList);
-        })
+        console.log(data);
+        setInfo(data.results);
+        console.log(info);
       })
   },[])
 
@@ -62,8 +58,8 @@ export default function Home() {
         <div style={{ justifyContent: "start" }}>
           <CategoryText> Previews </CategoryText>
           <MovieList>
-            {imgList.map((pic : any) => (
-              <RoundImg src={`${imgPath}/${pic}`} />
+            {info.map((item : any) => (
+              <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
             ))}
           </MovieList>
         </div>
@@ -72,9 +68,9 @@ export default function Home() {
           <div style={{ justifyContent: "start" }}>
             <CategoryText> {item} </CategoryText>
             <MovieList>
-              {picture.map((pic) => (
-                <SquareImg src={pic.src} />
-              ))}
+            {info.map((item : any) => (
+              <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
+            ))}
             </MovieList>
           </div>
         ))}
