@@ -1,4 +1,6 @@
-const BASE_URL = 'https://api.themoviedb.org/3';
+import axios from 'axios';
+
+export const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const POST_PATH = 'https://image.tmdb.org/t/p/w500';
 
@@ -12,4 +14,11 @@ export const API = {
 
 export const URL = {
   PostPath: `${POST_PATH}`,
+};
+
+export const getDetail = (id: string) => {
+
+  return axios
+    .get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
+    .then((response) => response.data);
 };

@@ -11,9 +11,10 @@ function MovieFetch({ movieData }: IMovieData) {
     <TrendingWrapper>
       {movieData.map((movieItem: IMovie) => (
         <MovieItemWrapper key={movieItem.id}>
+            <Link href={`/detail/${movieItem.id}`}>
           <div>
             <MovieImage src={`${URL.PostPath}/${movieItem.poster_path}`} />
-          </div>
+          </div></Link>
         </MovieItemWrapper>
       ))}
     </TrendingWrapper>

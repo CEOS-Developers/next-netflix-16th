@@ -6,7 +6,6 @@ function Poster({ randomMovieArray }: IPoster) {
   const number = Math.floor(Math.random() * 80);
   const randomMovie = randomMovieArray[number];
 
-  console.log(randomMovie);
   return (
     <>
       <PosterImage src={`${URL.PostPath}/${randomMovie.poster_path}`} />
