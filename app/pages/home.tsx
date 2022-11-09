@@ -45,9 +45,7 @@ export default function Home( { latest, now_playing, popular, top_rated, upcomin
           <MovieList>
             {upcoming.results.map((item : any, idx : number) => (
               <Link href={`/detail?id=${item.id}`}>
-                <div style={{ width: "7rem", height: "7rem", marginRight: "1rem", overflow: "hidden"}}>
                   <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
-                </div>
               </Link>
             ))}
           </MovieList>
@@ -115,7 +113,7 @@ const HeaderText = styled.div`
   font-weight: 400;
 `;
 const MainImg = styled.img`
-  width: 100%;
+  width: 400px;
   margin-top: -5rem;
 `;
 const InfoBox = styled.div`
