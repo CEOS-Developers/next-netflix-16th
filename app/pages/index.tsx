@@ -1,6 +1,6 @@
 import styles from "../styles/Home.module.css";
 import { useEffect } from "react";
-import netflix from "../asset/netflix.gif";
+import netflix from "../asset/netflix1.gif";
 import styled from "styled-components";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(function(){
       location.href='home';
-    }, 1000)
+    }, 3600)
   });
 
   return (
