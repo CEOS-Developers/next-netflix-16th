@@ -2,13 +2,15 @@ import axios from 'axios';
 import { API } from './components/API/API';
 import MovieFetch from './components/Main/mainMovieFetch';
 import Poster from './components/Main/Poster';
+import { IMainMovie } from './Interface/interface';
 
 function MainPage({
   previewData,
   popularData,
   nowPlayingData,
   topRatedData,
-}: any) {
+}: IMainMovie) {
+    
   const randomMovieArray = [
     ...previewData,
     ...popularData,

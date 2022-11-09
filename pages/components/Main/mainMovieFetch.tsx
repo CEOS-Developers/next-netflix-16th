@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import { IMovie, IMovieData } from '../../Interface/interface';
 import { URL } from '../API/API';
 
-function MovieFetch({ movieData }: any) {
+
+function MovieFetch({ movieData }: IMovieData) {
   if (!movieData) return null;
 
   return (
     <TrendingWrapper>
-      {movieData.map((movieItem: any) => (
+      {movieData.map((movieItem: IMovie) => (
         <MovieItemWrapper key={movieItem.id}>
           <div>
             <MovieImage src={`${URL.PostPath}/${movieItem.poster_path}`} />

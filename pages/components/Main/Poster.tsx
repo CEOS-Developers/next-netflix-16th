@@ -1,8 +1,8 @@
-
+import { IPoster } from '../../Interface/interface';
 import styled from 'styled-components';
 import { URL } from '../API/API';
 
-function Poster({ randomMovieArray }: any) {
+function Poster({ randomMovieArray }: IPoster) {
   const number = Math.floor(Math.random() * 80);
   const randomMovie = randomMovieArray[number];
 
@@ -18,6 +18,5 @@ export default Poster;
 
 const PosterImage = styled.img`
   width: 375px;
-  height: 415px;
   object-fit: cover;
 `;
