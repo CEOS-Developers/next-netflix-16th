@@ -100,6 +100,7 @@ const Logo = styled.img`
 `;
 const HeaderText = styled.div`
   font-size: 1rem;
+  font-weight: 400;
 `;
 const MainImg = styled.img`
   width: 100%;
@@ -115,10 +116,13 @@ const InfoBox = styled.div`
 
 const CategoryText = styled.div`
   font-size: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   margin-left: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: 'SF Pro Display';
+  font-weight: 700;
 `;
+
 const MovieList = styled.div`
   display: flex;
   flex-direction: row;
