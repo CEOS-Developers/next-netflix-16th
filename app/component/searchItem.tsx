@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import play2 from "../asset/icons/play2.svg";
+import play2 from "../asset/img/icons/play2.svg";
 import imgPath from "../asset/imgPath";
 
 const SearchItem = ({ imgSrc, name }: { imgSrc: string; name: string }) => {
