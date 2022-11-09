@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigator";
+import Image from "next/image";
+import play from "../asset/icons/play.svg";
 
 interface imgSize {
   width?: string;
@@ -15,11 +17,7 @@ export default function Detail() {
           <img src="/poster.jpg" alt="poster" style={{ width: "100%" }} />
         </ImgWrap>
         <PlayBtn>
-          <img
-            src="/right-arrow.png"
-            alt="arrow"
-            style={{ width: "20px", height: "20px", marginRight: "10px" }}
-          />
+          <Image src={play} alt="playbtn" />
           <div>Play</div>
         </PlayBtn>
         <TextWrap>

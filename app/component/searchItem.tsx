@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import Image from "next/image";
+import play2 from "../asset/icons/play2.svg";
 
 const SearchItem = () => {
   return (
     <ItemWrap>
       <img src="/poster.jpg" style={{ width: "146px" }} />
       <ItemTitle>Terrifier 2</ItemTitle>
-      <img src="/search.png" style={{ width: "28px", height: "28px" }} />
+      <Image src={play2} alt="close" />
     </ItemWrap>
   );
 };
