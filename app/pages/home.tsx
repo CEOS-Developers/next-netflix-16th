@@ -7,11 +7,37 @@ import movEx from "../asset/movEx.png";
 import info1 from "../asset/home/info1.svg";
 import info2 from "../asset/home/info2.svg";
 import info3 from "../asset/home/info3.svg";
+import { useEffect, useState } from "react";
+
+import api from "../asset/api";
+import apiKey from "../asset/apiKey";
+import imgPath from "../asset/imgPath";
 
 const title = ["Now Playing", "Top Rated", "Popular"];
-const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
+// const picture = [movEx, movEx, movEx, movEx, movEx, movEx, movEx, movEx];
 
 export default function Home() {
+  const [info, setInfo] = useState([] as any);
+
+  useEffect(() => {
+    const movie_id = 550;
+    // https://developers.themoviedb.org/3/movies/get-movie-images : 영화이미지
+    // fetch(`${api}/movie/${movie_id}/images?api_key=${apiKey}`)
+    // fetch(`${api}/movie/${movie_id}?api_key=${apiKey}`)
+    // fetch(`${api}/movie/latest?api_key=${apiKey}`)
+
+    // 최신 영화 이미지 리스트 나옴. 영화 19개
+    // fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+
+    fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setInfo(data.results);
+        console.log(info);
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -32,18 +58,23 @@ export default function Home() {
         <div style={{ justifyContent: "start" }}>
           <CategoryText> Previews </CategoryText>
           <MovieList>
-            {picture.map((pic) => (
-              <RoundImg src={pic.src} />
+            {info.map((item: any) => (
+              <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
             ))}
           </MovieList>
         </div>
 
-        {title.map((item) => (
+        {title.map((title, count) => (
           <div style={{ justifyContent: "start" }}>
-            <CategoryText> {item} </CategoryText>
-            <MovieList>              {picture.map((pic) => (
-                <SquareImg src={pic.src} />
-              ))}
+            <CategoryText> {title} </CategoryText>
+            <MovieList>
+              {info.map((item: any, idx: number) =>
+                count * 5 + 5 <= idx && count * 5 + 10 > idx ? (
+                  <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
+                ) : (
+                  <></>
+                )
+              )}
             </MovieList>
           </div>
         ))}
