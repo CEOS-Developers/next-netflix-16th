@@ -19,6 +19,7 @@ export default Navigator;
 const NavigatorWrapper = styled.div`
   display: flex;
   flex-direction: columns;
-  positon: fixed;
+  position: fixed;
+  background-color: red;
   bottom: 0;
 `;
