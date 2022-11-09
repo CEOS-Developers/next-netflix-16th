@@ -41,8 +41,7 @@ export default function Home() {
         {title.map((item) => (
           <div style={{ justifyContent: "start" }}>
             <CategoryText> {item} </CategoryText>
-            <MovieList>
-              {picture.map((pic) => (
+            <MovieList>              {picture.map((pic) => (
                 <SquareImg src={pic.src} />
               ))}
             </MovieList>

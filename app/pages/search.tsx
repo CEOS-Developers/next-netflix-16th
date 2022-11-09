@@ -11,12 +11,7 @@ export default function Home() {
         <Wrap>
           <ImgWrap>
             {/* <img src="/search.png" alt="search" /> */}
-            <Image
-              src="/asset/icons/searchIcon.svg"
-              alt="search"
-              width={15}
-              height={15}
-            />
+            <Image src="../asset/icons/searchIcon.svg" alt="search" />
           </ImgWrap>
           <Input type="text" placeholder="Search for movies" />
           <ImgWrap>
