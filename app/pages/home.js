@@ -21,8 +21,8 @@ const title = ["Now Playing", "Top Rated", "Popular", "My List"];
 
 export async function getServerSideProps() {
  
-  const res = await axios.get(`${api}/movie/now_playing?api_key=${apiKey}`)
-  const data = res.data
+  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+  const data = await res.json()
 
   return { props: { data } }
 }
