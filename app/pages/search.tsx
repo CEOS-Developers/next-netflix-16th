@@ -7,30 +7,20 @@ import search from "../asset/img/icons/searchIcon.svg";
 import close from "../asset/img/icons/close.svg";
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
-import { useEffect, useState } from "react";
 import useInput from "../component/hooks/useInput";
 import Link from "next/link";
 
 export async function getServerSideProps() {
-  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`);
+  const res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
   const data = await res.json();
 
   return { props: { data: data } };
 }
 
 export default function Search({ data }: any) {
-  const [info, setInfo] = useState([] as any);
   const { text, handleChange, resetText } = useInput("");
 
   const movieData = data.results;
-
-  useEffect(() => {
-    fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setInfo(data.results);
-      });
-  }, []);
 
   return (
     <div className={styles.container}>
