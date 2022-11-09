@@ -3,10 +3,25 @@ import Navigator from "../component/navigator";
 import styled from "styled-components";
 import SearchItem from "../component/searchItem";
 import Image from "next/image";
-import search from "../asset/img/icons/searchIcon.svg";
-import close from "../asset/img/icons/close.svg";
+import search from "../asset/icons/searchIcon.svg";
+import close from "../asset/icons/close.svg";
+import api from "../asset/api";
+import apiKey from "../asset/apiKey";
+import { useEffect, useState } from "react";
+import useInput from "../component/hooks/useInput";
 
 export default function Home() {
+  const [info, setInfo] = useState([] as any);
+  const { text, handleChange, resetText } = useInput("");
+
+  useEffect(() => {
+    fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setInfo(data.results);
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -14,16 +29,25 @@ export default function Home() {
           <ImgWrap>
             <Image src={search} alt="search" />
           </ImgWrap>
-          <Input type="text" placeholder="Search for movies" />
-          <ImgWrap>
+          <Input
+            value={text}
+            onChange={handleChange}
+            placeholder="Search for movies"
+          />
+          <ImgWrap onClick={resetText}>
             <Image src={close} alt="close" />
           </ImgWrap>
         </Wrap>
 
         <div>
           <Title>Top Searches</Title>
-          <SearchItem />
-          <SearchItem />
+          {info
+            .filter((i: any) =>
+              i.title.toLowerCase().includes(text.toLowerCase())
+            )
+            .map((movie: any) => (
+              <SearchItem name={movie.title} imgSrc={movie.backdrop_path} />
+            ))}
         </div>
 
         <Navigator />
@@ -43,8 +67,11 @@ const Wrap = styled.div`
 `;
 
 const ImgWrap = styled.div`
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Title = styled.div`

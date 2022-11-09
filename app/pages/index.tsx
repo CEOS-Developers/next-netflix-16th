@@ -4,7 +4,6 @@ import netflix from "../asset/img/netflix1.gif";
 import styled from "styled-components";
 
 export default function Home() {
-
   useEffect(() => {
     setTimeout(function(){
       location.href='home';
@@ -13,16 +12,16 @@ export default function Home() {
 
   return (
     <Container>
-      <GIF src={netflix.src}/>
+      <GIF src={netflix.src} />
     </Container>
   );
 }
 
 const Container = styled.div`
   display: relative;
-`
+`;
 const GIF = styled.img`
   position: absolute;
   top: 20%;
   width: 100%;
-`
+`;

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import Image from "next/image";
-import play2 from "../asset/img/icons/play2.svg";
+import play2 from "../asset/icons/play2.svg";
+import imgPath from "../asset/imgPath";
 
-const SearchItem = () => {
+const SearchItem = ({ imgSrc, name }: { imgSrc: string; name: string }) => {
   return (
     <ItemWrap>
-      <img src="/poster.jpg" style={{ width: "146px" }} />
-      <ItemTitle>Terrifier 2</ItemTitle>
+      <img src={`${imgPath}/${imgSrc}`} style={{ width: "146px" }} />
+      <ItemTitle>{name}</ItemTitle>
       <Image src={play2} alt="close" />
     </ItemWrap>
   );

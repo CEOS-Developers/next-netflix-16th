@@ -10,9 +10,9 @@ import info1 from "../asset/img/home/info1.svg";
 import info2 from "../asset/img/home/info2.svg";
 import info3 from "../asset/img/home/info3.svg";
 
-import api from '../asset/api'
-import apiKey from '../asset/apiKey'
-import imgPath from '../asset/imgPath'
+import api from "../asset/api";
+import apiKey from "../asset/apiKey";
+import imgPath from "../asset/imgPath";
 
 const title = ["Now Playing", "Top Rated", "Popular", "My List"];
 
@@ -21,8 +21,8 @@ export default function Home() {
 
   useEffect(() => {
     fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-      .then(res=>res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
         setInfo(data.results);
       })
