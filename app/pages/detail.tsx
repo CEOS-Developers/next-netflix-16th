@@ -15,27 +15,12 @@ interface imgSize {
   height?: string;
 }
 
-export default function Detail() {
-  const router = useRouter()
-  const movieId = router.query.id;
-  console.log(movieId);
-
-  const [movie, setMovie] = useState([] as any);
-
-  useEffect(() => {
-    fetch(`${api}/movie/${movieId}?api_key=${apiKey}`)
-      .then(res=>res.json())
-      .then(data => {
-        console.log(data);
-        setMovie(data);
-      })
-  },[])
-
+export default function Detail({detail, movieId}:any) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <ImgWrap>
-          <img src={`${imgPath}/${movie.backdrop_path}`} alt="poster" style={{ height: "30rem", marginLeft:"-55%" }} />
+          <img src={`${imgPath}/${detail.backdrop_path}`} alt="poster" style={{ height: "30rem", marginLeft:"-55%" }} />
         </ImgWrap>
         <PlayBtn>
           <Image src={play} alt="playbtn" />
@@ -44,7 +29,7 @@ export default function Detail() {
         <TextWrap>
           <TextTitle>Previews</TextTitle>
           <TextDesc>
-            {movie.overview}
+            {detail.overview}
           </TextDesc>
         </TextWrap>
         <div style={{ height: "5rem" }} />
@@ -52,6 +37,15 @@ export default function Detail() {
       <Navigator />
     </div>
   );
+}
+
+export const getServerSideProps = async(context:any)=> {
+  const movieId = context.query.id;
+
+  let res = await fetch(`${api}/movie/${movieId}?api_key=${apiKey}`)
+  const detail = await res.json()
+
+  return { props: { detail, movieId } }
 }
 
 const ImgWrap = styled.div`

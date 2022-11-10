@@ -137,7 +137,7 @@ const MovieList = styled.div`
   display: flex;
   flex-direction: row;
   width: 400px;
-  overflow: hidden;
+  overflow-y: auto;
 `;
 
 const RoundImg = styled.img`
