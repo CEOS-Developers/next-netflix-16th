@@ -44,8 +44,13 @@ export default function Home( { latest, now_playing, popular, top_rated, upcomin
           <MovieList>
             {upcoming.results.map((item : any, idx : number) => (
               <Link href={`/detail?id=${item.id}`}>
-                  <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
-              </Link>
+              <div style={{ width: "7rem", height: "7rem", marginRight: "0.5rem", overflow: "hidden", borderRadius: "50rem"}}>
+                <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
+              </div>
+            </Link>
+              // <Link href={`/detail?id=${item.id}`}>
+              //     <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
+              // </Link>
             ))}
           </MovieList>
         </div>
@@ -140,10 +145,8 @@ const MovieList = styled.div`
 `;
 
 const RoundImg = styled.img`
-  width: 7rem;
-  height: 7rem;
-  margin-left: 0.5rem;
-  border-radius: 50rem;
+  height: 100%;
+  margin-left: -35%;
 `;
 const SquareImg = styled.img`
   height: 100%;
