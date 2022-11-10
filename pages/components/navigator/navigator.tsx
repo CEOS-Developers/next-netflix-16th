@@ -78,11 +78,15 @@ function Navigator() {
 export default Navigator;
 
 const NavigatorWrapper = styled.div`
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  position: sticky;
+  position: fixed;
+  width: 375px;
   background-color: #121212;
-  bottom: 0;
+  margin: 0 auto;
   height: 48px;
   padding-top: 11px;
 `;

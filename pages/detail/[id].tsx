@@ -4,17 +4,13 @@ import styled from 'styled-components';
 import { BASE_URL, getDetail, URL } from '../components/API/API';
 
 function Detail({ movieDetail }: any) {
-  if (!movieDetail) return null;
-
+  //movieDatail 너무 많아서 interface 나중에 ㅎㅎ..
+  
   return (
     <>
-      <div>detail</div>
-      <>
-        <MovieImage src={`${URL.PostPath}${movieDetail.poster_path}`} />
-        <h2>Previews</h2>
-        <h4>{movieDetail?.original_title || movieDetail?.original_name}</h4>
-        <div>{movieDetail.overview}</div>
-      </>
+      <MovieImage src={`${URL.PostPath}${movieDetail.poster_path}`} />
+      <Preview>Previews</Preview>
+      <Overview>{movieDetail.overview}</Overview>
     </>
   );
 }
@@ -22,7 +18,7 @@ export default Detail;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { id } = context.query;
-  const API_KEY: any = process.env.NEXT_PUBLIC_API_KEY;
+  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
   try {
     const response = await axios.get(
@@ -43,9 +39,22 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 };
 
-export const MovieImage = styled.img`
-  height: 100px;
-  width: 103px;
+const MovieImage = styled.img`
+  width: 100%;
   cursor: pointer;
   border-radius: 1px;
+`;
+
+const Preview = styled.div`
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 20px;
+  text-align: left;
+  margin: 24px 0 24px 32px;
+`;
+
+const Overview = styled.div`
+  font-size: 11px;
+  margin-left: 32px;
+  color: rgba(255, 255, 255, 0.83);
 `;

@@ -8,8 +8,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Wrapper>
         <Component {...pageProps} />
-        {pageProps && pageProps.pathname !== '/' && <Navigator />}
       </Wrapper>
+      {pageProps && pageProps.pathname !== '/' && <Navigator />}
     </>
   );
 }

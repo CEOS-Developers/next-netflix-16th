@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { BlockLike } from 'typescript';
 import { IMovie, IMovieData } from '../../Interface/interface';
 import { URL } from '../API/API';
 
