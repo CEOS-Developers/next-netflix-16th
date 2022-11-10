@@ -6,21 +6,72 @@ import SelectSearch from '../assets/selectSearch.png';
 import SelectHome from '../assets/selectHome.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { MouseEvent, useState } from 'react';
+import ComingSoon from '../assets/commingsoon.png';
+import More from '../assets/more.png';
+import Download from '../assets/download.png';
+import NavigatorItem from './NavigatorItem';
 
 function Navigator() {
   const router = useRouter();
 
- 
-      <Link href={`/search`} style={{ textDecoration: 'none' }}>
-              <Image
-                src={router.pathname === '/search' ? SelectSearch : Search}
-                alt=""
-                width={20}
-                height={17}
-              />
-              <Name>search</Name>
-          </Link>
+  const pathArray = [
+    {
+      id: 1,
+      path: '/main',
+      notSelected: Home,
+      Selected: SelectHome,
+      name: 'Home',
+    },
+    {
+      id: 2,
+      path: '/search',
+      notSelected: Search,
+      Selected: SelectSearch,
+      name: 'Search',
+    },
+    {
+      id: 3,
+      path: '/comingsoon',
+      notSelected: ComingSoon,
+      Selected: ComingSoon,
+      name: 'Coming Soon',
+    },
+    {
+      id: 4,
+      path: '/download',
+      notSelected: Download,
+      Selected: Download,
+      name: 'Download',
+    },
+    {
+      id: 5,
+      path: '/more',
+      notSelected: More,
+      Selected: More,
+      name: 'More',
+    },
+  ];
+
+  return (
+    <NavigatorWrapper>
+      {pathArray.map((item) => {
+        const selected = router.pathname === item.path;
+        return (
+          <>
+            {item.id === 1 || item.id === 2 ? (
+              <Link
+                href={`${item.path}`}
+                key={`${item.id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <NavigatorItem item={item} selected={selected} />
+              </Link>
+            ) : (
+              <NavigatorItem item={item} selected={selected} />
+            )}
+          </>
+        );
+      })}
     </NavigatorWrapper>
   );
 }
@@ -33,16 +84,4 @@ const NavigatorWrapper = styled.div`
   position: sticky;
   background-color: #121212;
   bottom: 0;
-`;
-
-const MenuWrapper = styled.div<{ selected: boolean }>`
-  color: ${({ selected }) => (selected ? 'white' : 'grey')};
-  text-decoration: none;
-  text-decortion-line : none;
-`;
-
-const Name = styled.div`
-  text-decoration: none;
-  text-decortion-line : none;
-  color: white;
 `;
