@@ -14,7 +14,7 @@ function Poster({ randomMovieArray }: IPoster) {
       <NetflixImage>
         <Image
           src={Netflix}
-          alt="Picture of the author"
+          alt="Netflix"
           width={57}
           height={57}
         />
