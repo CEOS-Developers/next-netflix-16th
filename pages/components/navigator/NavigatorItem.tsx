@@ -9,7 +9,7 @@ function NavigatorItem({ item, selected }: any) {
           src={selected ? item.Selected : item.notSelected}
           alt=""
           width={20}
-          height={17}
+          height={20}
         />
         <div>{item.name}</div>
       </MenuWrapper>
@@ -24,4 +24,8 @@ const MenuWrapper = styled.div<{ selected: boolean }>`
   text-decoration: none;
   text-decortion-line: none;
   cursor: pointer;
+  font-size: 8px;
+  margin-top: 11px;
+  margin: 0 auto;
+  text-align:center;
 `;
