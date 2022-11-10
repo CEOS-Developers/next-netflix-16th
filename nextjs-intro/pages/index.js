@@ -1,105 +1,115 @@
 import { useEffect, useState } from 'react';
 import MyHead from '../components/MyHead';
+import { useRouter } from 'next/router';
+import head from 'next/head';
 
-export default function home({ data, data2, data3 }) {
-  console.log(data3);
+export default function main() {
+  const router = useRouter();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push('/home');
+    }, 6000);
+  });
+
   return (
-    <div className="container">
-      <MyHead title="Home" />
-      <div className="movies-section">
-        <div className="movies-name">Popular</div>
-        <div className="movies-wrapper">
-          {data3.results.map((movie) => (
-            <div key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="movies-section">
-        <div className="movies-name">Now Playing</div>
-        <div className="movies-wrapper">
-          {data2.results.map((movie) => (
-            <div key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt=""
-              />
-            </div>
-          ))}
+    <div>
+      <MyHead title="Netflix" />
+
+      <div className="logo">
+        <div className="netflix">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
 
-      <style jsx>{`
-        .movies-section {
-          width: 100%;
-          padding: 0.5rem 0 0.5rem;
-
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-        .movies-name {
-          font-family: 'SF Pro Display';
-          font-style: normal;
-          font-weight: 700;
-          font-size: 20.9212px;
-          color: white;
-        }
-
-        .movies-wrapper {
-          width: 100%;
-          display: flex;
-          gap: 7px;
-
-          overflow: auto;
-        }
-
-        img {
-          width: 103px;
-          height: 161px;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+          }
+          .netflix {
+            position: relative;
+            width: 360px;
+            height: 520px;
+            overflow: hidden;
+            transform: scale(0.5);
+          }
+          .netflix:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -100px;
+            width: 100%;
+            height: 120px;
+            background: #000;
+            z-index: 2;
+            border-top-left-radius: 100%;
+            border-top-right-radius: 100%;
+            transform: scaleX(1.5);
+          }
+          .netflix:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, #000, #000);
+            z-index: 3;
+            animation: animate 5s linear forwards;
+          }
+          @keyframes animate {
+            0% {
+              right: 0;
+            }
+            100% {
+              right: -500%;
+            }
+          }
+          .netflix span {
+            position: absolute;
+            top: 0;
+            width: 120px;
+            background: #fff;
+          }
+          .netflix span:nth-child(1) {
+            background: #b00612;
+            left: 0;
+            animation: BottomToTop 1s linear forwards;
+          }
+          @keyframes BottomToTop {
+            from {
+              height: 0%;
+            }
+            to {
+              height: 100%;
+            }
+          }
+          .netflix span:nth-child(2) {
+            background: #e50815;
+            left: 116px;
+            z-index: 1;
+            transform-origin: top-left;
+            transform: skewX(24deg);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+            animation: BottomToTop 1s linear forwards;
+            animation-delay: 1s;
+          }
+          .netflix span:nth-child(3) {
+            background: #b00612;
+            right: 10px;
+            animation: BottomToTop 1s linear forwards;
+            animation-delay: 2s;
+          }
+        `}
+      </style>
     </div>
   );
 }
-
-export async function getStaticProps() {
-  const data = await (
-    await fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=aaf81bdfd64c8485a414ab01ef93d056`
-    )
-  ).json();
-  const data2 = await (
-    await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=aaf81bdfd64c8485a414ab01ef93d056`
-    )
-  ).json();
-  const data3 = await (
-    await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=aaf81bdfd64c8485a414ab01ef93d056`
-    )
-  ).json();
-
-  return {
-    props: {
-      data,
-      data2,
-      data3,
-    },
-  };
-}
-
-// movie api를 받아오기 전까지 아무것도 보여주지 않는
-// Server Side Rendering
-// export async function getServerSideProps() {
-//   const { results } = await (await fetch(`http://localhost:3000/api/movies`)).json();
-//   return {
-//     props: {
-//       results,
-//     },
-//   };
-// }

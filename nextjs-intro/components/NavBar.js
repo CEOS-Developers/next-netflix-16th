@@ -15,9 +15,11 @@ export default function NavBar() {
   return (
     <nav>
       <div className="container">
-        <Link href="/">
+        <Link href="/home">
           <div
-            className={router.pathname === '/' ? 'nav-link active' : 'nav-link'}
+            className={
+              router.pathname === '/home' ? 'nav-link active' : 'nav-link'
+            }
           >
             <FontAwesomeIcon icon={faHouse} size={'1x'} />
             <div className="nav-text">Home</div>
