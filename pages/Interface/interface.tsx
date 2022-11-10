@@ -43,3 +43,7 @@ export interface INavigatorItem {
   item: IItem;
   selected: boolean;
 }
+
+export interface IPlayButton{
+    width: string
+}
