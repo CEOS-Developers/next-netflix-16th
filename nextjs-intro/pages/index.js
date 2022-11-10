@@ -1,23 +1,15 @@
 import { useEffect, useState } from 'react';
 import MyHead from '../components/MyHead';
 
-export default function home() {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(`/api/movies`);
-      const { results } = await response.json();
-      setMovies(results);
-    })();
-  }, []);
-
+export default function home({ data, data2, data3 }) {
+  console.log(data3);
   return (
     <div className="container">
       <MyHead title="Home" />
       <div className="movies-section">
-        <div className="movies-name">Nollywood Movies & TV</div>
+        <div className="movies-name">Popular</div>
         <div className="movies-wrapper">
-          {movies?.map((movie) => (
+          {data3.results.map((movie) => (
             <div key={movie.id}>
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -28,9 +20,9 @@ export default function home() {
         </div>
       </div>
       <div className="movies-section">
-        <div className="movies-name">Nollywood Movies & TV</div>
+        <div className="movies-name">Now Playing</div>
         <div className="movies-wrapper">
-          {movies?.map((movie) => (
+          {data2.results.map((movie) => (
             <div key={movie.id}>
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -40,45 +32,7 @@ export default function home() {
           ))}
         </div>
       </div>
-      <div className="movies-section">
-        <div className="movies-name">Nollywood Movies & TV</div>
-        <div className="movies-wrapper">
-          {movies?.map((movie) => (
-            <div key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="movies-section">
-        <div className="movies-name">Nollywood Movies & TV</div>
-        <div className="movies-wrapper">
-          {movies?.map((movie) => (
-            <div key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="movies-section">
-        <div className="movies-name">Nollywood Movies & TV</div>
-        <div className="movies-wrapper">
-          {movies?.map((movie) => (
-            <div key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+
       <style jsx>{`
         .movies-section {
           width: 100%;
@@ -111,6 +65,32 @@ export default function home() {
       `}</style>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const data = await (
+    await fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=aaf81bdfd64c8485a414ab01ef93d056`
+    )
+  ).json();
+  const data2 = await (
+    await fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=aaf81bdfd64c8485a414ab01ef93d056`
+    )
+  ).json();
+  const data3 = await (
+    await fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=aaf81bdfd64c8485a414ab01ef93d056`
+    )
+  ).json();
+
+  return {
+    props: {
+      data,
+      data2,
+      data3,
+    },
+  };
 }
 
 // movie api를 받아오기 전까지 아무것도 보여주지 않는
