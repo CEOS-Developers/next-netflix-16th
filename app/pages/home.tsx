@@ -129,10 +129,10 @@ const InfoBox = styled.div`
 `;
 
 const CategoryText = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 1.5rem;
   margin-left: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-family: "SF Pro Display";
   font-weight: 700;
 `;
