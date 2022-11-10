@@ -1,7 +1,7 @@
 import axios from 'axios';
 import styled from 'styled-components';
 import { API } from './components/API/API';
-import MovieFetch from './components/Main/mainMovieFetch';
+import MovieFetch from './components/Main/Mainmovie';
 import Poster from './components/Main/Poster';
 import { IMainMovie } from './Interface/interface';
 

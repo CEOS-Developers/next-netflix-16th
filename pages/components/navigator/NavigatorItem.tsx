@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { INavigatorItem } from '../../Interface/interface';
 
-function NavigatorItem({ item, selected }: any) {
+function NavigatorItem({ item, selected }: INavigatorItem) {
   return (
     <>
       <MenuWrapper selected={selected}>
@@ -27,5 +28,5 @@ const MenuWrapper = styled.div<{ selected: boolean }>`
   font-size: 8px;
   margin-top: 11px;
   margin: 0 auto;
-  text-align:center;
+  text-align: center;
 `;

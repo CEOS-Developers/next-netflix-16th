@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { IMovie, IMovieData } from '../../Interface/interface';
+import { IMovie} from '../../Interface/interface';
 import { URL } from '../API/API';
+import { IMovieFetch } from '../../Interface/interface';
 
-function MovieFetch({ movieData, trending }: any) {
-  if (!movieData) return null;
+function MovieFetch({ movieData, trending }: IMovieFetch) {
 
   return (
-    <TrendingWrapper>
+    <MovieWrapper>
       {movieData.map((movieItem: IMovie) => (
         <MovieItemWrapper key={movieItem.id}>
           <Link href={`/detail/${movieItem.id}`}>
@@ -18,13 +18,13 @@ function MovieFetch({ movieData, trending }: any) {
           </Link>
         </MovieItemWrapper>
       ))}
-    </TrendingWrapper>
+    </MovieWrapper>
   );
 }
 
 export default MovieFetch;
 
-const TrendingWrapper = styled.div`
+const MovieWrapper = styled.div`
   display: flex;
   flex-direction: columns;
   width: 103px;
