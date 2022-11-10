@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigator";
-import { useRouter } from 'next/router'
-import { useEffect, useState } from "react";
 
 import api from '../asset/api'
 import apiKey from '../asset/apiKey'
@@ -15,7 +13,7 @@ interface imgSize {
   height?: string;
 }
 
-export default function Detail({detail, movieId}:any) {
+export default function Detail({detail}:any) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -45,7 +43,7 @@ export const getServerSideProps = async(context:any)=> {
   let res = await fetch(`${api}/movie/${movieId}?api_key=${apiKey}`)
   const detail = await res.json()
 
-  return { props: { detail, movieId } }
+  return { props: { detail } }
 }
 
 const ImgWrap = styled.div`

@@ -1,7 +1,6 @@
 import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigator";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import logo from "../asset/img/home/logo.png";
