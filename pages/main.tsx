@@ -11,7 +11,6 @@ function MainPage({
   nowPlayingData,
   topRatedData,
 }: IMainMovie) {
-
   const randomMovieArray = [
     ...previewData,
     ...popularData,
@@ -24,7 +23,7 @@ function MainPage({
       <Poster randomMovieArray={randomMovieArray} />
 
       <Title>Trending</Title>
-      <MovieFetch movieData={previewData} trending={true}/>
+      <MovieFetch movieData={previewData} trending={true} />
 
       <Title>Popular</Title>
       <MovieFetch movieData={popularData} />
@@ -67,6 +66,8 @@ export async function getServerSideProps() {
 }
 
 const Title = styled.div`
-  line-height: 16px;
+  line-height: 20px;
   margin: 22px 14px 16px;
+  font-weight: 700;
+  font-size: 26px;
 `;

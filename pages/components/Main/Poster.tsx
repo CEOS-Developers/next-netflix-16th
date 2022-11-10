@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { URL } from '../API/API';
 import Netflix from '../assets/netflix.png';
 import Image from 'next/image';
+import Postfooter from './Posterfooter';
 
 function Poster({ randomMovieArray }: IPoster) {
   const number = Math.floor(Math.random() * 80);
@@ -11,17 +12,13 @@ function Poster({ randomMovieArray }: IPoster) {
   return (
     <>
       <PosterImage src={`${URL.PostPath}/${randomMovie.poster_path}`} />
-      <NetflixImage>
-        <Image
-          src={Netflix}
-          alt="Netflix"
-          width={57}
-          height={57}
-        />
+      <MenuWrapper>
+        <Image src={Netflix} alt="Netflix" width={57} height={57} />
         <Menu>TV shows</Menu>
         <Menu>Movies</Menu>
         <Menu>My List</Menu>
-      </NetflixImage>
+      </MenuWrapper>
+      <Postfooter />
     </>
   );
 }
@@ -33,12 +30,13 @@ const PosterImage = styled.img`
   object-fit: cover;
 `;
 
-const NetflixImage = styled.div`
-  position: relative;
-  bottom: 550px;
+const MenuWrapper = styled.nav`
+  position: absolute;
+  width: 375px;
+  bottom: 600px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   background: transparent;
 `;
 
@@ -46,4 +44,6 @@ const Menu = styled.span`
   text-align: center;
   line-height: 57px;
   margin-right: 20px;
+  font-weight: 400;
+  font-size: 17px;
 `;
