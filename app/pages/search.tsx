@@ -53,6 +53,7 @@ export default function Search({ data }: any) {
                   pathname: "/detail",
                   query: { id: movie.id },
                 }}
+                key={idx}
               >
                 <SearchItem
                   name={movie.title}

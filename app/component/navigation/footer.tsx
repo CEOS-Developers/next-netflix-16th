@@ -27,8 +27,12 @@ const Navigator = () => {
                     alt="navi"
                     width={20}
                     height={20}
+                    key={idx}
                   />
-                  <NaviText color="#fffff"> {item.text} </NaviText>
+                  <NaviText color="#fffff" key={idx}>
+                    {" "}
+                    {item.text}{" "}
+                  </NaviText>
                 </>
               ) : (
                 <>
@@ -37,8 +41,9 @@ const Navigator = () => {
                     alt="navi"
                     width={20}
                     height={20}
+                    key={idx}
                   />
-                  <NaviText> {item.text} </NaviText>
+                  <NaviText key={idx}> {item.text} </NaviText>
                 </>
               )}
             </Link>
