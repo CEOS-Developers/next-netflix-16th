@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
-import Navigator from "../component/navigator";
+import Navigator from "../component/navigation/footer";
 
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
@@ -28,7 +28,7 @@ export default function Detail({ detail }: any) {
 export const getServerSideProps = async (context: any) => {
   const movieId = context.query.id;
 
-  let res = await fetch(`${api}/movie/${movieId}?api_key=${apiKey}`);
+  let res = await fetch(`${api}/${movieId}?api_key=${apiKey}`);
   const detail = await res.json();
 
   return { props: { detail } };

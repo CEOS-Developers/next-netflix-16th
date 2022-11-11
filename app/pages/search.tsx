@@ -1,6 +1,6 @@
 import styles from "../styles/Home.module.css";
 import useInput from "../component/hooks/useInput";
-import Navigator from "../component/navigator";
+import Navigator from "../component/navigation/footer";
 import styled from "styled-components";
 import SearchItem from "../component/search/searchItem";
 import Image from "next/image";
@@ -8,13 +8,6 @@ import Link from "next/link";
 
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
-
-export async function getServerSideProps() {
-  const res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
-  const data = await res.json();
-
-  return { props: { data: data } };
-}
 
 export default function Search({ data }: any) {
   const { text, handleChange, resetText } = useInput("");
@@ -65,11 +58,17 @@ export default function Search({ data }: any) {
               </Link>
             ))}
         </ListWrap>
-        <div style={{ height: "5rem" }} />
       </main>
       <Navigator />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${api}/popular?api_key=${apiKey}`);
+  const data = await res.json();
+
+  return { props: { data: data } };
 }
 
 const SearchBar = styled.div`
@@ -100,7 +99,7 @@ const Input = styled.input`
 
 const ListWrap = styled.div`
   overflow-y: auto;
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 11rem);
 `;
 const Title = styled.div`
   font-size: 26.7482px;

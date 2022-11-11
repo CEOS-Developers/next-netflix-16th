@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import Navigator from "../component/navigator";
+import Navigator from "../component/navigation/footer";
 import styled from "styled-components";
 import Link from "next/link";
 
@@ -7,6 +7,7 @@ import api from "../asset/api";
 import apiKey from "../asset/apiKey";
 import imgPath from "../asset/imgPath";
 import PlayBtn from "../component/playBtn";
+import Header from "../component/navigation/header";
 
 interface ImgShape {
   width?: number;
@@ -31,12 +32,7 @@ export default function Home({
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <Header>
-          <Logo src="/img/home/logo.png" />
-          <HeaderText> TV shows </HeaderText>
-          <HeaderText> Movies </HeaderText>
-          <HeaderText> My List </HeaderText>
-        </Header>
+        <Header />
         <MainImg src="https://image.tmdb.org/t/p/original/mqsPyyeDCBAghXyjbw4TfEYwljw.jpg" />
 
         <InfoBox>
@@ -78,7 +74,6 @@ export default function Home({
             </MovieList>
           </div>
         ))}
-
         <div style={{ height: "5rem" }} />
       </main>
       <Navigator />
@@ -87,41 +82,24 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  let res = await fetch(`${api}/movie/latest?api_key=${apiKey}`);
+  let res = await fetch(`${api}/latest?api_key=${apiKey}`);
   const latest = await res.json();
 
-  res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`);
+  res = await fetch(`${api}/now_playing?api_key=${apiKey}`);
   const now_playing = await res.json();
 
-  res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
+  res = await fetch(`${api}/popular?api_key=${apiKey}`);
   const popular = await res.json();
 
-  res = await fetch(`${api}/movie/top_rated?api_key=${apiKey}`);
+  res = await fetch(`${api}/top_rated?api_key=${apiKey}`);
   const top_rated = await res.json();
 
-  res = await fetch(`${api}/movie/upcoming?api_key=${apiKey}`);
+  res = await fetch(`${api}/upcoming?api_key=${apiKey}`);
   const upcoming = await res.json();
 
   return { props: { latest, now_playing, popular, top_rated, upcoming } };
 }
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 380px;
-  height: 5rem;
-  z-index: 99;
-  padding: 1rem 1rem 0 0;
-`;
-const Logo = styled.img`
-  height: 3.5rem;
-  width: 3.5rem;
-`;
-const HeaderText = styled.div`
-  font-size: 1.1rem;
-  font-weight: 400;
-`;
 const MainImg = styled.img`
   width: 400px;
   height: 460px;
