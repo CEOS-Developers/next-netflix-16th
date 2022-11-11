@@ -21,6 +21,7 @@ export default function home({ data, data2, data3 }) {
             <BannerTag>My List</BannerTag>
           </Header>
         </BoxBanner>
+        <BannerText>#2 in Nigeria Today</BannerText>
         <BoxMid>
           <BannerTag>
             <FontAwesomeIcon icon={faPlus} size={'1x'} />
@@ -143,9 +144,18 @@ const BannerImg = styled.img`
   width: 2.5rem;
 `;
 
+const BannerText = styled.div`
+  padding: 1rem;
+
+  font-weight: 700;
+  font-size: 13.72px;
+  color: white;
+
+  text-align: center;
+`;
+
 const BoxMid = styled.div`
   width: 100%;
-  padding: 1rem;
 
   display: flex;
   align-items: center;
@@ -158,6 +168,7 @@ const BannerTag = styled.div`
   font-size: 17.2px;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 `;
 const BannerButton = styled.button`
   width: 7rem;
@@ -181,7 +192,6 @@ const TemplateWrapper = styled.div`
 `;
 
 const TemplateName = styled.div`
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 26.75px;
