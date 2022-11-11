@@ -16,7 +16,7 @@ export default function home({ data, data2, data3 }) {
           />
           <BannerTag2>
             <BannerImg src={`/netflix.png`}></BannerImg>
-            <BannerTag1>TvShows</BannerTag1>
+            <BannerTag1>TV Shows</BannerTag1>
             <BannerTag1>Movies</BannerTag1>
             <BannerTag1>My List</BannerTag1>
           </BannerTag2>
@@ -29,37 +29,42 @@ export default function home({ data, data2, data3 }) {
           </BannerButton>
           <BannerTag1>More Info</BannerTag1>
         </BoxMid>
-        <div className="movies-name">Preview</div>
-        <RowTemplate>
-          {data.results.map((movie) => (
-            <div key={movie.id}>
-              <MovieImg
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-              />
-            </div>
-          ))}
-        </RowTemplate>
-        <div className="movies-name">Popular</div>
-        <RowTemplate>
-          {data3.results.map((movie) => (
-            <div key={movie.id}>
-              <MovieImg2
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-              />
-            </div>
-          ))}
-        </RowTemplate>
-        <div className="movies-name">Now Playing</div>
-        <RowTemplate>
-          {data2.results.map((movie) => (
-            <div key={movie.id}>
-              <MovieImg2
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-              />
-            </div>
-          ))}
-        </RowTemplate>
-
+        <TemplateWrapper>
+          <TemplateName>Preview</TemplateName>
+          <RowTemplate>
+            {data.results.map((movie) => (
+              <div key={movie.id}>
+                <MovieImg
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                />
+              </div>
+            ))}
+          </RowTemplate>
+        </TemplateWrapper>
+        <TemplateWrapper>
+          <TemplateName>Popular</TemplateName>
+          <RowTemplate>
+            {data3.results.map((movie) => (
+              <div key={movie.id}>
+                <MovieImg2
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                />
+              </div>
+            ))}
+          </RowTemplate>
+        </TemplateWrapper>
+        <TemplateWrapper>
+          <TemplateName>Now Playing</TemplateName>
+          <RowTemplate>
+            {data2.results.map((movie) => (
+              <div key={movie.id}>
+                <MovieImg2
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                />
+              </div>
+            ))}
+          </RowTemplate>
+        </TemplateWrapper>
         <style jsx>{`
           .movies-section {
             width: 100%;
@@ -69,14 +74,6 @@ export default function home({ data, data2, data3 }) {
             flex-direction: column;
             gap: 0.5rem;
           }
-          .movies-name {
-            font-family: 'SF Pro Display';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 20.9212px;
-            color: white;
-          }
-
           .movies-wrapper {
             width: 100%;
             display: flex;
@@ -121,10 +118,12 @@ export async function getServerSideProps() {
   };
 }
 const BoxContainer = styled.div`
-  width: 100%;
+  width: 100vw;
 `;
 
 const BoxBanner = styled.nav`
+  width: 100%;
+
   display: flex;
   text-align: center;
   color: white;
@@ -134,10 +133,15 @@ const BoxBanner = styled.nav`
 
 const RandomPic = styled.img`
   width: 100vw;
-  justify-content: center;
-  align-items: center;
-  fill: Linear Gradient rgba(0, 0, 0, 0.45) 0% rgba(0, 0, 0, 0) 87.26% #000000
-    100%;
+  height: 415px;
+  object-fit: cover;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0) 87.26%,
+    #000000 100%
+  );
 `;
 
 const BannerTag2 = styled.div`
@@ -152,15 +156,12 @@ const BannerTag2 = styled.div`
 `;
 
 const BannerImg = styled.img`
-  width: 40px;
-`;
-
-const BannerTag1 = styled.div`
-  color: white;
+  width: 2.5rem;
 `;
 
 const BoxMid = styled.div`
   width: 100%;
+  padding: 1rem;
 
   display: flex;
   align-items: center;
@@ -168,46 +169,61 @@ const BoxMid = styled.div`
   gap: 1rem;
 `;
 
-const RowTemplate = styled.div`
-  width: 100%;
+const BannerTag1 = styled.div`
+  color: white;
+  font-size: 17.2px;
+`;
+const BannerButton = styled.button`
+  width: 7rem;
+  height: 3rem;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #c4c4c4;
+  border-radius: 5.625px;
+`;
+
+const TemplateWrapper = styled.div`
+  width: 100vw;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const TemplateName = styled.div`
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26.75px;
+  color: white;
+`;
+
+const RowTemplate = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: auto;
+  gap: 0.5rem;
+`;
+
+const MovieImg = styled.img`
+  width: 102px;
+  height: 102px;
+
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const MovieImg2 = styled.img`
+  width: 103px;
+  height: 177px;
 `;
 
 const LittleImg = styled.img`
   width: 20px;
   height: 20px;
 `;
-const MovieImg2 = styled.img`
-  width: 80px;
-  height: 90px;
-  margin-left: 10px;
-`;
-const MovieImg = styled.img`
-  width: 80px;
-  height: 90px;
-  border-radius: 50%;
-  margin-left: 10px;
-`;
-
-const BannerButton = styled.button`
-  //position: absolute;
-  width: 110.62px;
-  height: 45px;
-  left: 137px;
-  top: 428px;
-  display: flex;
-  flex-direction: row;
-  background: #c4c4c4;
-  border-radius: 5.625px;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-top: 10px;
-`;
-
-//BoxContainer부터해서 다 적용이 안된다 흑흑..일단 global-style에서 제외시킬 수 있으면 제외시키고 안되면 그냥 styled-components로 통일시켜야될것같당 화이튕!!
