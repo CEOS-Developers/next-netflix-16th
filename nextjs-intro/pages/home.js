@@ -1,13 +1,11 @@
 import MyHead from '../components/MyHead';
 import styled from 'styled-components';
-import { ServerStyleSheet } from 'styled-components';
-import Head from 'next/head';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function home({ data, data2, data3 }) {
   const randomPic = Number([Math.floor(Math.random() * data.results.length)]);
-  console.log(randomPic);
+
   return (
     <>
       <MyHead title="Home" />
@@ -16,26 +14,27 @@ export default function home({ data, data2, data3 }) {
           <RandomPic
             src={`https://image.tmdb.org/t/p/original/${data.results[randomPic].poster_path}`}
           />
-          <BannerTag2>
+          <Header>
             <BannerImg src={`/netflix.png`}></BannerImg>
-            <BannerTag1>TV Shows</BannerTag1>
-            <BannerTag1>Movies</BannerTag1>
-            <BannerTag1>My List</BannerTag1>
-          </BannerTag2>
+            <BannerTag>TV Shows</BannerTag>
+            <BannerTag>Movies</BannerTag>
+            <BannerTag>My List</BannerTag>
+          </Header>
         </BoxBanner>
+        <BannerText>#2 in Nigeria Today</BannerText>
         <BoxMid>
-          <BannerTag1>
+          <BannerTag>
             <FontAwesomeIcon icon={faPlus} size={'1x'} />
             MyList
-          </BannerTag1>
+          </BannerTag>
           <BannerButton>
             <LittleImg src={`/play.png`} />
             PLAY
           </BannerButton>
-          <BannerTag1>
+          <BannerTag>
             <FontAwesomeIcon icon={faCircleExclamation} size={'1x'} />
             More Info
-          </BannerTag1>
+          </BannerTag>
         </BoxMid>
         <TemplateWrapper>
           <TemplateName>Preview</TemplateName>
@@ -78,21 +77,21 @@ export default function home({ data, data2, data3 }) {
   );
 }
 
+const API_KEY = process.env.API_KEY;
+
 export async function getServerSideProps() {
   const data = await (
     await fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=aaf81bdfd64c8485a414ab01ef93d056`
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`
     )
   ).json();
   const data2 = await (
     await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=aaf81bdfd64c8485a414ab01ef93d056`
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`
     )
   ).json();
   const data3 = await (
-    await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=aaf81bdfd64c8485a414ab01ef93d056`
-    )
+    await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
   ).json();
 
   return {
@@ -130,7 +129,7 @@ const RandomPic = styled.img`
   );
 `;
 
-const BannerTag2 = styled.div`
+const Header = styled.div`
   width: 375px;
   padding: 1.5rem;
 
@@ -145,9 +144,18 @@ const BannerImg = styled.img`
   width: 2.5rem;
 `;
 
+const BannerText = styled.div`
+  padding: 1rem;
+
+  font-weight: 700;
+  font-size: 13.72px;
+  color: white;
+
+  text-align: center;
+`;
+
 const BoxMid = styled.div`
   width: 100%;
-  padding: 1rem;
 
   display: flex;
   align-items: center;
@@ -155,11 +163,12 @@ const BoxMid = styled.div`
   gap: 1rem;
 `;
 
-const BannerTag1 = styled.div`
+const BannerTag = styled.div`
   color: white;
   font-size: 17.2px;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 `;
 const BannerButton = styled.button`
   width: 7rem;
@@ -183,7 +192,6 @@ const TemplateWrapper = styled.div`
 `;
 
 const TemplateName = styled.div`
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 26.75px;
@@ -192,7 +200,6 @@ const TemplateName = styled.div`
 
 const RowTemplate = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   overflow: auto;
   gap: 0.5rem;

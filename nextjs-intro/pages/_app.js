@@ -370,6 +370,8 @@ export default function App({ Component, pageProps }) {
         input:focus {
           outline: none;
         }
+
+        font-family: 'SF Pro Display';
       `}</style>
     </Layout>
   );
