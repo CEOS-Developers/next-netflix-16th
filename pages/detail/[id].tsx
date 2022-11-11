@@ -1,13 +1,12 @@
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import styled from 'styled-components';
-import { BASE_URL, getDetail, URL } from '../components/API/API';
+import { getDetail, URL } from '../components/API/API';
 import PlayButton from '../components/Share/PlayButton';
 
 function Detail({ movieDetail }: any) {
   //movieDatail 너무 많아서 interface 나중에 ㅎㅎ..
 
-  if(!movieDetail) return null;
+  if (!movieDetail) return null;
   return (
     <>
       <MovieImage src={`${URL.PostPath}${movieDetail.poster_path}`} />
@@ -21,15 +20,9 @@ export default Detail;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { id } = context.query;
-  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
   try {
-    const response = await axios.get(
-      `${BASE_URL}/movie/${id}?api_key=${API_KEY}`
-    );
-
-    const movieDetail = response.data;
-    const detail = await getDetail(id);
+    const movieDetail = await getDetail(id);
 
     return {
       props: { movieDetail },

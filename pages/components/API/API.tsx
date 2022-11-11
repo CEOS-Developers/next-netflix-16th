@@ -17,7 +17,6 @@ export const URL = {
 };
 
 export const getDetail = (id: string) => {
-
   return axios
     .get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
     .then((response) => response.data);
