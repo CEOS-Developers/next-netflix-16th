@@ -14,7 +14,7 @@ export default function Layout({ children }) {
           align-items: center;
         }
         .content {
-          width: 95%;
+          width: 100vw;
           height: 100vh;
         }
       `}</style>

@@ -7,7 +7,7 @@ export default function home({ data, data2, data3 }) {
   const randomPic = Number([Math.floor(Math.random() * data.results.length)]);
   console.log(randomPic);
   return (
-    <div>
+    <>
       <MyHead title="Home" />
       <BoxContainer>
         <BoxBanner>
@@ -91,7 +91,7 @@ export default function home({ data, data2, data3 }) {
           }
         `}</style>
       </BoxContainer>
-    </div>
+    </>
   );
 }
 
@@ -120,6 +120,63 @@ export async function getServerSideProps() {
     },
   };
 }
+const BoxContainer = styled.div`
+  width: 100%;
+`;
+
+const BoxBanner = styled.nav`
+  display: flex;
+  text-align: center;
+  color: white;
+
+  position: relative;
+`;
+
+const RandomPic = styled.img`
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  fill: Linear Gradient rgba(0, 0, 0, 0.45) 0% rgba(0, 0, 0, 0) 87.26% #000000
+    100%;
+`;
+
+const BannerTag2 = styled.div`
+  width: 100%;
+  padding: 1.5rem;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  position: fixed;
+`;
+
+const BannerImg = styled.img`
+  width: 40px;
+`;
+
+const BannerTag1 = styled.div`
+  color: white;
+`;
+
+const BoxMid = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+const RowTemplate = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+`;
+
 const LittleImg = styled.img`
   width: 20px;
   height: 20px;
@@ -134,54 +191,6 @@ const MovieImg = styled.img`
   height: 90px;
   border-radius: 50%;
   margin-left: 10px;
-`;
-const RowTemplate = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
-const BoxBanner = styled.nav`
-  display: flex;
-  text-align: center;
-  flex-direction: row;
-  color: white;
-  // margin-left: 30px;
-
-  margin-right: 40px;
-  position: relative;
-`;
-
-const BannerTag1 = styled.div`
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  background: transparent;
-
-  z-index: 2;
-  padding-right: 20px;
-  padding-top: 24px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  color: white;
-`;
-const BannerTag2 = styled.div`
-  position: absolute;
-  top: 5%;
-  left: 3%;
-  display: flex;
-  flex-direction: row;
-`;
-
-const BannerImg = styled.img`
-  margin-left: 3px;
-  margin-right: 80px;
-  width: 40px;
-  height: 50px;
 `;
 
 const BannerButton = styled.button`
@@ -199,35 +208,6 @@ const BannerButton = styled.button`
   margin-right: 10px;
   margin-left: 10px;
   margin-top: 10px;
-`;
-const BoxMid = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-const RandomPic = styled.img`
-  width: 400px;
-  justify-content: center;
-  align-items: center;
-  fill: Linear Gradient rgba(0, 0, 0, 0.45) 0% rgba(0, 0, 0, 0) 87.26% #000000
-    100%;
-`;
-
-const BoxContainer = styled.div`
-  //border: 3px solid;
-  //padding: 30px;
-  width: 380;
-  height: 500;
-  //border-color: red;
-  background-color: black;
-  width: 400px;
-  height: 1400px;
-  display: block;
-  justify-content: center;
-  align-items: center;
-  margin-left: 610px;
 `;
 
 //BoxContainer부터해서 다 적용이 안된다 흑흑..일단 global-style에서 제외시킬 수 있으면 제외시키고 안되면 그냥 styled-components로 통일시켜야될것같당 화이튕!!
