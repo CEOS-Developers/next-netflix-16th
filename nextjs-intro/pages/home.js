@@ -190,7 +190,6 @@ const TemplateName = styled.div`
 
 const RowTemplate = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   overflow: auto;
   gap: 0.5rem;
