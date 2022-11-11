@@ -45,7 +45,7 @@ export default function Home({
           <CategoryText fontsize={27}> Previews </CategoryText>
           <MovieList>
             {upcoming.results.map((item: any, idx: number) => (
-              <Link href={`/detail?id=${item.id}`}>
+              <Link href={`/detail?id=${item.id}`} key={idx}>
                 <ImgWrap radius={50}>
                   <Img src={`${imgPath}/${item.backdrop_path}`} />
                 </ImgWrap>
@@ -62,7 +62,7 @@ export default function Home({
             <CategoryText> {items.title} </CategoryText>
             <MovieList>
               {items.path.results.map((item: any, idx: number) => (
-                <Link href={`/detail?id=${item.id}`}>
+                <Link href={`/detail?id=${item.id}`} key={idx}>
                   <ImgWrap width={6.44} height={10}>
                     <Img
                       margin={-85}
