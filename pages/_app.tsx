@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Wrapper } from './styles/Wrapper';
-import Navigator from './components/Navigator/Navigator';
+import Navigator from './components/Navigator/navigator';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
