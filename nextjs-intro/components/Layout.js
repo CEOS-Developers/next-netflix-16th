@@ -1,23 +1,24 @@
+import styled from 'styled-components';
 import NavBar from './NavBar';
 
 export default function Layout({ children }) {
   return (
-    <div className="container">
-      <div className="content">{children}</div>
+    <Container>
+      <Content>{children}</Content>
       <NavBar />
-      <style jsx>{`
-        .container {
-          width: 100vw;
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .content {
-          width: 100vw;
-          height: 100vh;
-        }
-      `}</style>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 375px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  height: 100vh;
+`;

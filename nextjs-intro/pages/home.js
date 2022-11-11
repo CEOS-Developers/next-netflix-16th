@@ -96,7 +96,7 @@ export async function getServerSideProps() {
   };
 }
 const BoxContainer = styled.div`
-  width: 100vw;
+  width: 375px;
 `;
 
 const BoxBanner = styled.nav`
@@ -110,7 +110,7 @@ const BoxBanner = styled.nav`
 `;
 
 const RandomPic = styled.img`
-  width: 100vw;
+  width: 100%;
   height: 415px;
   object-fit: cover;
 
@@ -123,7 +123,7 @@ const RandomPic = styled.img`
 `;
 
 const BannerTag2 = styled.div`
-  width: 100%;
+  width: 375px;
   padding: 1.5rem;
 
   display: flex;
@@ -164,7 +164,7 @@ const BannerButton = styled.button`
 `;
 
 const TemplateWrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   padding: 1rem;
 
   display: flex;

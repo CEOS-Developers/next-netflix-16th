@@ -8,7 +8,7 @@ export default function main() {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push('/home');
-    }, 6000);
+    }, 2000);
   });
 
   return (
@@ -66,9 +66,9 @@ export default function main() {
             height: 100%;
             background: linear-gradient(to right, transparent, #000, #000);
             z-index: 3;
-            animation: animate 2s ease-in forwards;
+            animation: appear 2s ease-in forwards;
           }
-          @keyframes animate {
+          @keyframes appear {
             0% {
               right: 0;
             }
@@ -76,6 +76,7 @@ export default function main() {
               right: -500%;
             }
           }
+
           .netflix span {
             position: absolute;
             top: 0;
@@ -91,11 +92,22 @@ export default function main() {
             }
           }
 
+          @keyframes BottomToTop {
+            from {
+              bottom: 0;
+              height: 0;
+            }
+            to {
+              bottom: 0;
+              height: 100;
+            }
+          }
+
           .netflix span:nth-child(1) {
             background: #b00612;
             left: 0;
             animation: TopToBottom 0.5s ease-in forwards;
-            animation-delay: 2s;
+            animation-delay: 1s;
           }
 
           .netflix span:nth-child(2) {
@@ -105,8 +117,8 @@ export default function main() {
             transform-origin: bottom-right;
             transform: skewX(25deg);
             box-shadow: 0 0 40px rgba(0, 0, 0, 1);
-            animation: TopToBottom 0.5s ease-in forwards;
-            animation-delay: 1s;
+            animation: BottomToTop 0.5s ease-in forwards;
+            animation-delay: 0.5s;
           }
           .netflix span:nth-child(3) {
             background: #b00612;

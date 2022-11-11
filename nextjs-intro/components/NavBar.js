@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouse,
@@ -13,8 +14,8 @@ import { useRouter } from 'next/router';
 export default function NavBar() {
   const router = useRouter();
   return (
-    <nav>
-      <div className="container">
+    <Nav>
+      <Container>
         <Link href="/home">
           <div
             className={
@@ -67,27 +68,9 @@ export default function NavBar() {
             <div className="nav-text">More</div>
           </div>
         </Link>
-      </div>
+      </Container>
 
       <style jsx>{`
-        nav {
-          width: 100vw;
-          height: 48px;
-
-          position: fixed;
-          bottom: 0;
-        }
-        .container {
-          width: 100%;
-          height: 100%;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 2.5rem;
-
-          background: #121212;
-        }
         .active {
           color: white;
         }
@@ -104,6 +87,26 @@ export default function NavBar() {
           font-size: 8.2px;
         }
       `}</style>
-    </nav>
+    </Nav>
   );
 }
+
+const Nav = styled.nav`
+  width: 375px;
+  height: 48px;
+
+  position: fixed;
+  bottom: 0;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+
+  background: #121212;
+`;
