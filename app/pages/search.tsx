@@ -2,7 +2,7 @@ import styles from "../styles/Home.module.css";
 import useInput from "../component/hooks/useInput";
 import Navigator from "../component/navigator";
 import styled from "styled-components";
-import SearchItem from "../component/searchItem";
+import SearchItem from "../component/search/searchItem";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,14 +23,14 @@ export default function Search({ data }: any) {
 
   return (
     <div className={styles.container}>
-      <main>
+      <main className={styles.main}>
         <SearchBar>
           <ImgWrap>
             <Image
               src="/img/icons/searchIcon.svg"
               alt="search"
-              width={15}
-              height={15}
+              width={19}
+              height={19}
             />
           </ImgWrap>
           <Input
@@ -42,13 +42,13 @@ export default function Search({ data }: any) {
             <Image
               src="/img/icons/close.svg"
               alt="close"
-              width={15}
-              height={15}
+              width={19}
+              height={19}
             />
           </ImgWrap>
         </SearchBar>
 
-        <div>
+        <ListWrap>
           <Title>Top Searches</Title>
           {movieData
             .filter((i: any) =>
@@ -64,11 +64,10 @@ export default function Search({ data }: any) {
                 <SearchItem name={movie.title} imgSrc={movie.backdrop_path} />
               </Link>
             ))}
-        </div>
+        </ListWrap>
         <div style={{ height: "5rem" }} />
-
-        <Navigator />
       </main>
+      <Navigator />
     </div>
   );
 }
@@ -84,13 +83,12 @@ const SearchBar = styled.div`
 `;
 
 const ImgWrap = styled.div`
-  width: 20px;
-  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const Input = styled.input`
+  font-size: 15px;
   border: none;
   background: transparent;
   color: #fff;
@@ -100,8 +98,13 @@ const Input = styled.input`
   outline: none; // 인풋 포커스 했을때 border 안생기게
 `;
 
+const ListWrap = styled.div`
+  overflow-y: auto;
+  height: calc(100vh - 10rem);
+`;
 const Title = styled.div`
   font-size: 26.7482px;
   font-weight: 700;
   padding: 15px 10px;
+  text-align: left;
 `;
