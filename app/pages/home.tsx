@@ -46,8 +46,8 @@ export default function Home({
           <MovieList>
             {upcoming.results.map((item: any, idx: number) => (
               <Link href={`/detail?id=${item.id}`} key={idx}>
-                <ImgWrap radius={50}>
-                  <Img src={`${imgPath}/${item.backdrop_path}`} />
+                <ImgWrap radius={50} key={idx}>
+                  <Img src={`${imgPath}/${item.backdrop_path}`} key={idx} />
                 </ImgWrap>
               </Link>
               // <Link href={`/detail?id=${item.id}`}>
@@ -63,10 +63,11 @@ export default function Home({
             <MovieList>
               {items.path.results.map((item: any, idx: number) => (
                 <Link href={`/detail?id=${item.id}`} key={idx}>
-                  <ImgWrap width={6.44} height={10}>
+                  <ImgWrap width={6.44} height={10} key={idx}>
                     <Img
                       margin={-85}
                       src={`${imgPath}/${item.backdrop_path}`}
+                      key={idx}
                     />
                   </ImgWrap>
                 </Link>
