@@ -2,6 +2,8 @@ import MyHead from '../components/MyHead';
 import styled from 'styled-components';
 import { ServerStyleSheet } from 'styled-components';
 import Head from 'next/head';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function home({ data, data2, data3 }) {
   const randomPic = Number([Math.floor(Math.random() * data.results.length)]);
@@ -22,12 +24,18 @@ export default function home({ data, data2, data3 }) {
           </BannerTag2>
         </BoxBanner>
         <BoxMid>
-          <BannerTag1>MyList</BannerTag1>
+          <BannerTag1>
+            <FontAwesomeIcon icon={faPlus} size={'1x'} />
+            MyList
+          </BannerTag1>
           <BannerButton>
             <LittleImg src={`/play.png`} />
             PLAY
           </BannerButton>
-          <BannerTag1>More Info</BannerTag1>
+          <BannerTag1>
+            <FontAwesomeIcon icon={faCircleExclamation} size={'1x'} />
+            More Info
+          </BannerTag1>
         </BoxMid>
         <TemplateWrapper>
           <TemplateName>Preview</TemplateName>
@@ -150,6 +158,8 @@ const BoxMid = styled.div`
 const BannerTag1 = styled.div`
   color: white;
   font-size: 17.2px;
+  display: flex;
+  flex-direction: column;
 `;
 const BannerButton = styled.button`
   width: 7rem;
