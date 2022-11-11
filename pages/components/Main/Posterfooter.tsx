@@ -32,7 +32,8 @@ const Footer = styled.div`
 const IconWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const Menu = styled.span`

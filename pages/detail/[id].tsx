@@ -2,13 +2,12 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import styled from 'styled-components';
 import { BASE_URL, getDetail, URL } from '../components/API/API';
-import Play from '../components/assets/play.png';
-import Image from 'next/image';
 import PlayButton from '../components/Share/PlayButton';
 
 function Detail({ movieDetail }: any) {
   //movieDatail 너무 많아서 interface 나중에 ㅎㅎ..
 
+  if(!movieDetail) return null;
   return (
     <>
       <MovieImage src={`${URL.PostPath}${movieDetail.poster_path}`} />

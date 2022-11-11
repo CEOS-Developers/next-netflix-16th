@@ -1,4 +1,4 @@
-import NetflixAnimation from './components/netflix/netflix';
+import NetflixAnimation from './components/Netflix/netflix';
 
 export default function Home() {
   return (

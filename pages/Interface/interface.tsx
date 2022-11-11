@@ -45,5 +45,5 @@ export interface INavigatorItem {
 }
 
 export interface IPlayButton{
-    width: string
+    width ?: string
 }
