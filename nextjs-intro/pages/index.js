@@ -26,17 +26,20 @@ export default function main() {
       <style jsx>
         {`
           body {
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background: #000;
           }
+          .logo {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
           .netflix {
-            position: relative;
-            width: 360px;
+            width: 320px;
             height: 520px;
             overflow: hidden;
             transform: scale(0.5);
@@ -63,7 +66,7 @@ export default function main() {
             height: 100%;
             background: linear-gradient(to right, transparent, #000, #000);
             z-index: 3;
-            animation: animate 5s linear forwards;
+            animation: animate 2s ease-in forwards;
           }
           @keyframes animate {
             0% {
@@ -79,12 +82,7 @@ export default function main() {
             width: 120px;
             background: #fff;
           }
-          .netflix span:nth-child(1) {
-            background: #b00612;
-            left: 0;
-            animation: BottomToTop 1s linear forwards;
-          }
-          @keyframes BottomToTop {
+          @keyframes TopToBottom {
             from {
               height: 0%;
             }
@@ -92,21 +90,28 @@ export default function main() {
               height: 100%;
             }
           }
+
+          .netflix span:nth-child(1) {
+            background: #b00612;
+            left: 0;
+            animation: TopToBottom 0.5s ease-in forwards;
+            animation-delay: 2s;
+          }
+
           .netflix span:nth-child(2) {
             background: #e50815;
             left: 116px;
             z-index: 1;
-            transform-origin: top-left;
-            transform: skewX(24deg);
+            transform-origin: bottom-right;
+            transform: skewX(25deg);
             box-shadow: 0 0 40px rgba(0, 0, 0, 1);
-            animation: BottomToTop 1s linear forwards;
+            animation: TopToBottom 0.5s ease-in forwards;
             animation-delay: 1s;
           }
           .netflix span:nth-child(3) {
             background: #b00612;
             right: 10px;
-            animation: BottomToTop 1s linear forwards;
-            animation-delay: 2s;
+            animation: TopToBottom 0.5s ease-in forwards;
           }
         `}
       </style>

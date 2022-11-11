@@ -65,28 +65,6 @@ export default function home({ data, data2, data3 }) {
             ))}
           </RowTemplate>
         </TemplateWrapper>
-        <style jsx>{`
-          .movies-section {
-            width: 100%;
-            padding: 0.5rem 0 0.5rem;
-
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-          }
-          .movies-wrapper {
-            width: 100%;
-            display: flex;
-            gap: 7px;
-
-            overflow: auto;
-          }
-
-          img {
-            width: 103px;
-            height: 161px;
-          }
-        `}</style>
       </BoxContainer>
     </>
   );
