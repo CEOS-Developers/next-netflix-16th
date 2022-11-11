@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Image from "next/image";
-import imgPath from "../asset/imgPath";
+import imgPath from "../../asset/imgPath";
 
 const SearchItem = ({ imgSrc, name }: { imgSrc: string; name: string }) => {
   return (
     <ItemWrap>
       <img src={`${imgPath}/${imgSrc}`} style={{ width: "146px" }} />
       <ItemTitle>{name}</ItemTitle>
-      <Image src="/img/icons/play2.svg" alt="close" width={15} height={15} />
+      <Image src="/img/icons/play2.svg" alt="close" width={24} height={24} />
     </ItemWrap>
   );
 };

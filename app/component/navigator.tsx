@@ -25,18 +25,18 @@ const Navigator = () => {
                   <Image
                     src={`/img/navigator/select_${item.src}.svg`}
                     alt="navi"
-                    width={18}
-                    height={18}
+                    width={20}
+                    height={20}
                   />
-                  <NaviText color="#fff"> {item.text} </NaviText>
+                  <NaviText color="#fffff"> {item.text} </NaviText>
                 </>
               ) : (
                 <>
                   <Image
                     src={`/img/navigator/${item.src}.svg`}
                     alt="navi"
-                    width={18}
-                    height={18}
+                    width={20}
+                    height={20}
                   />
                   <NaviText> {item.text} </NaviText>
                 </>
@@ -70,7 +70,7 @@ const NaviContainer = styled.div`
 `;
 
 const NaviText = styled.div<{ color?: string }>`
-  font-size: 0.6rem;
-  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
   color: ${(props) => props.color || "#878787"};
 `;
