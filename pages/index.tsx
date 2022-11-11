@@ -1,5 +1,5 @@
 import { NextPageContext } from 'next/types';
-import NetflixAnimation from './components/Netflix/netflix';
+import NetflixAnimation from './components/Netflixs/netflix';
 
 export default function Home() {
   return <NetflixAnimation />;

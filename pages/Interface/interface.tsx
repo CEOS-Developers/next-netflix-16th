@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface IMovie {
   adult: boolean;
   backdrop_path: string;
@@ -29,14 +31,14 @@ export interface IPoster {
 
 export interface IMovieFetch {
   movieData: IMovie[];
-  trending?: boolean;
+  trending ?: boolean ;
 }
 
 export interface IItem {
-  id: boolean;
+  id: number;
   path: string;
-  notSelected: string;
-  Selected: string;
+  notSelected: StaticImageData;
+  Selected: StaticImageData;
   name: string;
 }
 export interface INavigatorItem {

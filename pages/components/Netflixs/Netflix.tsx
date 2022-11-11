@@ -1,4 +1,4 @@
-import lottie from 'lottie-web';
+import lottie, { AnimationItem } from 'lottie-web';
 import { useRouter } from 'next/router';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ function NetflixAnimation() {
   const router = useRouter();
 
   useEffect(() => {
-    const netflix = lottie.loadAnimation({
+    const netflix : AnimationItem= lottie.loadAnimation({
       container: netflixContainer.current,
       renderer: 'svg',
       loop: false,

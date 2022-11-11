@@ -27,10 +27,10 @@ function MainPage({
       <Poster randomMovieArray={randomMovieArray} />
 
       <Title>Trending</Title>
-      <MovieFetch movieData={previewData} trending={true} />
+      <MovieFetch movieData={previewData} trending ={true} />
 
       <Title>Popular</Title>
-      <MovieFetch movieData={popularData} />
+      <MovieFetch movieData={popularData}/>
 
       <Title>Now Playing</Title>
       <MovieFetch movieData={nowPlayingData} />
