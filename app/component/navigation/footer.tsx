@@ -18,8 +18,8 @@ const Navigator = () => {
     <Container>
       <>
         {naviList.map((item, idx) => (
-          <NaviContainer key={idx}>
-            <Link href={item.link}>
+          <NaviContainer>
+            <Link href={item.link} key={idx}>
               {pathName.pathname === item.link ? (
                 <>
                   <Image
