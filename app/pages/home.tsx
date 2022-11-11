@@ -58,7 +58,7 @@ export default function Home({
         </div>
 
         {title.map((items: any, idx: number) => (
-          <div style={{ justifyContent: "start" }}>
+          <div key={idx} style={{ justifyContent: "start" }}>
             <CategoryText key={idx}> {items.title} </CategoryText>
             <MovieList>
               {items.path.results.map((item: any, idx: number) => (
