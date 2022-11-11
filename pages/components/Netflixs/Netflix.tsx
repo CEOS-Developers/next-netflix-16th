@@ -8,7 +8,7 @@ function NetflixAnimation() {
   const router = useRouter();
 
   useEffect(() => {
-    const netflix : AnimationItem= lottie.loadAnimation({
+    const netflix : any = lottie.loadAnimation({
       container: netflixContainer.current,
       renderer: 'svg',
       loop: false,
