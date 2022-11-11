@@ -1,14 +1,13 @@
 import styles from "../styles/Home.module.css";
+import useInput from "../component/hooks/useInput";
 import Navigator from "../component/navigator";
 import styled from "styled-components";
 import SearchItem from "../component/searchItem";
 import Image from "next/image";
-import search from "../asset/img/icons/searchIcon.svg";
-import close from "../asset/img/icons/close.svg";
+import Link from "next/link";
+
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
-import useInput from "../component/hooks/useInput";
-import Link from "next/link";
 
 export async function getServerSideProps() {
   const res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
@@ -24,20 +23,30 @@ export default function Search({ data }: any) {
 
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        <Wrap>
+      <main>
+        <SearchBar>
           <ImgWrap>
-            <Image src={search} alt="search" />
+            <Image
+              src="/img/icons/searchIcon.svg"
+              alt="search"
+              width={15}
+              height={15}
+            />
           </ImgWrap>
           <Input
             value={text}
             onChange={handleChange}
-            placeholder="Search for movies"
+            placeholder="Search for a show, movie, genre, e.t.c"
           />
           <ImgWrap onClick={resetText}>
-            <Image src={close} alt="close" />
+            <Image
+              src="/img/icons/close.svg"
+              alt="close"
+              width={15}
+              height={15}
+            />
           </ImgWrap>
-        </Wrap>
+        </SearchBar>
 
         <div>
           <Title>Top Searches</Title>
@@ -56,6 +65,7 @@ export default function Search({ data }: any) {
               </Link>
             ))}
         </div>
+        <div style={{ height: "5rem" }} />
 
         <Navigator />
       </main>
@@ -63,7 +73,7 @@ export default function Search({ data }: any) {
   );
 }
 
-const Wrap = styled.div`
+const SearchBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,17 +90,18 @@ const ImgWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-const Title = styled.div`
-  font-size: 20px;
-  font-weight: 700;
-  padding: 15px;
-`;
 const Input = styled.input`
   border: none;
   background: transparent;
   color: #fff;
-  width: 280px;
-  height: 30px;
+  width: 270px;
+  height: 31px;
   margin: 0 20px;
+  outline: none; // 인풋 포커스 했을때 border 안생기게
+`;
+
+const Title = styled.div`
+  font-size: 26.7482px;
+  font-weight: 700;
+  padding: 15px 10px;
 `;

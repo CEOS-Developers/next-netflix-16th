@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-import play2 from "../asset/img/icons/play2.svg";
 import imgPath from "../asset/imgPath";
 
 const SearchItem = ({ imgSrc, name }: { imgSrc: string; name: string }) => {
@@ -8,7 +7,7 @@ const SearchItem = ({ imgSrc, name }: { imgSrc: string; name: string }) => {
     <ItemWrap>
       <img src={`${imgPath}/${imgSrc}`} style={{ width: "146px" }} />
       <ItemTitle>{name}</ItemTitle>
-      <Image src={play2} alt="close" />
+      <Image src="/img/icons/play2.svg" alt="close" width={15} height={15} />
     </ItemWrap>
   );
 };
@@ -26,6 +25,7 @@ const ItemWrap = styled.div`
 `;
 
 const ItemTitle = styled.div`
-  width: 200px;
+  width: 215px;
   padding-left: 20px;
+  font-size: 15px;
 `;

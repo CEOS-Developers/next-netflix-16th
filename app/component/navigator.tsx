@@ -1,29 +1,46 @@
 import styled from "styled-components";
-
-import navi1 from "../asset/img/navigator/navi1.svg";
-import navi2 from "../asset/img/navigator/navi2.svg";
-import navi3 from "../asset/img/navigator/navi3.svg";
-import navi4 from "../asset/img/navigator/navi4.svg";
-import navi5 from "../asset/img/navigator/navi5.svg";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 const naviList = [
-  { id: 0, src: navi1.src, text: "Home", link: "/home" },
-  { id: 1, src: navi2.src, text: "Search", link: "/search" },
-  { id: 2, src: navi3.src, text: "Coming Soon", link: "" },
-  { id: 3, src: navi4.src, text: "Downloads", link: "" },
-  { id: 4, src: navi5.src, text: "More", link: "" },
+  { id: 0, src: "navi1", text: "Home", link: "/home" },
+  { id: 1, src: "navi2", text: "Search", link: "/search" },
+  { id: 2, src: "navi3", text: "Coming Soon", link: "" },
+  { id: 3, src: "navi4", text: "Downloads", link: "" },
+  { id: 4, src: "navi5", text: "More", link: "" },
 ];
 
 const Navigator = () => {
+  const pathName = useRouter();
+
   return (
     <Container>
       <>
         {naviList.map((item, idx) => (
           <NaviContainer key={idx}>
             <Link href={item.link}>
-              <NaviIcon src={item.src} />
-              <NaviText> {item.text} </NaviText>
+              {pathName.pathname === item.link ? (
+                <>
+                  <Image
+                    src={`/img/navigator/select_${item.src}.svg`}
+                    alt="navi"
+                    width={18}
+                    height={18}
+                  />
+                  <NaviText color="#fff"> {item.text} </NaviText>
+                </>
+              ) : (
+                <>
+                  <Image
+                    src={`/img/navigator/${item.src}.svg`}
+                    alt="navi"
+                    width={18}
+                    height={18}
+                  />
+                  <NaviText> {item.text} </NaviText>
+                </>
+              )}
             </Link>
           </NaviContainer>
         ))}
@@ -36,10 +53,9 @@ export default Navigator;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 400px;
-  height: 5rem;
+  height: 4rem;
   background-color: #121212;
   position: fixed;
   bottom: 0;
@@ -49,16 +65,12 @@ const NaviContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 5rem;
   text-align: center;
   padding: 1rem;
 `;
 
-const NaviIcon = styled.img`
-  width: 1.2rem;
-  height: 1.2rem;
-`;
-const NaviText = styled.div`
+const NaviText = styled.div<{ color?: string }>`
   font-size: 0.6rem;
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
+  color: ${(props) => props.color || "#878787"};
 `;
