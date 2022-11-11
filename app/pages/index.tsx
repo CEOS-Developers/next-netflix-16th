@@ -1,26 +1,26 @@
 import { useEffect } from "react";
-import netflix from "../asset/img/netflix1.gif";
 import styled from "styled-components";
 
 export default function Home() {
   useEffect(() => {
-    setTimeout(function(){
-      location.href='home';
-    }, 3400)
+    setTimeout(function () {
+      location.href = "home";
+    }, 2010);
   });
 
   return (
     <Container>
-      <GIF src={netflix.src} />
+      <GIF src="/img/netflix2.gif" />
     </Container>
   );
 }
 
 const Container = styled.div`
-  display: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const GIF = styled.img`
-  position: absolute;
-  top: 20%;
-  width: 100%;
+  width: 60%;
 `;

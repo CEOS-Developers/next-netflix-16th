@@ -1,53 +1,55 @@
 import styles from "../styles/Home.module.css";
-import Navigator from "../component/navigator";
+import Navigator from "../component/navigation/footer";
 import styled from "styled-components";
 import Link from "next/link";
-
-import logo from "../asset/img/home/logo.png";
-import movEx from "../asset/img/movEx.png";
-import info1 from "../asset/img/home/info1.svg";
-import info2 from "../asset/img/home/info2.svg";
-import info3 from "../asset/img/home/info3.svg";
 
 import api from "../asset/api";
 import apiKey from "../asset/apiKey";
 import imgPath from "../asset/imgPath";
+import PlayBtn from "../component/playBtn";
+import Header from "../component/navigation/header";
 
-export default function Home( { latest, now_playing, popular, top_rated, upcoming } : any) {
+interface ImgShape {
+  width?: number;
+  height?: number;
+  radius?: number;
+}
 
+export default function Home({
+  latest,
+  now_playing,
+  popular,
+  top_rated,
+  upcoming,
+}: any) {
   const title = [
-    {"title": "Now Playing", "path": now_playing},
-    {"title": "Top Rated", "path":top_rated},
-    {"title": "Popular", "path": popular},
-    {"title": "Upcoming", "path": upcoming},
-  ]
+    { title: "Now Playing", path: now_playing },
+    { title: "Top Rated", path: top_rated },
+    { title: "Popular", path: popular },
+    { title: "Upcoming", path: upcoming },
+  ];
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <Header>
-          <Logo src={logo.src} />
-          <HeaderText> TV shows </HeaderText>
-          <HeaderText> Movies </HeaderText>
-          <HeaderText> My List </HeaderText>
-        </Header>
-        <MainImg src={movEx.src} />
+        <Header />
+        <MainImg src="https://image.tmdb.org/t/p/original/mqsPyyeDCBAghXyjbw4TfEYwljw.jpg" />
 
         <InfoBox>
-          <img src={info1.src} />
-          <img src={info2.src} />
-          <img src={info3.src} />
+          <img src="/img/home/info1.svg" />
+          <PlayBtn width={110} />
+          <img src="/img/home/info3.svg" />
         </InfoBox>
 
-        <div style={{ justifyContent: "start" }}>
-          <CategoryText> Previews </CategoryText>
+        <div style={{ justifyContent: "start", marginBottom: "2rem" }}>
+          <CategoryText fontsize={27}> Previews </CategoryText>
           <MovieList>
-            {upcoming.results.map((item : any, idx : number) => (
+            {upcoming.results.map((item: any, idx: number) => (
               <Link href={`/detail?id=${item.id}`}>
-              <div style={{ width: "7rem", height: "7rem", marginRight: "0.5rem", overflow: "hidden", borderRadius: "50rem"}}>
-                <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
-              </div>
-            </Link>
+                <ImgWrap radius={50}>
+                  <Img src={`${imgPath}/${item.backdrop_path}`} />
+                </ImgWrap>
+              </Link>
               // <Link href={`/detail?id=${item.id}`}>
               //     <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
               // </Link>
@@ -59,96 +61,79 @@ export default function Home( { latest, now_playing, popular, top_rated, upcomin
           <div style={{ justifyContent: "start" }}>
             <CategoryText> {items.title} </CategoryText>
             <MovieList>
-            {items.path.results.map((item : any, idx : number) => (
-              <Link href={`/detail?id=${item.id}`}>
-                <div style={{ width: "6.5rem", height: "10rem", marginRight: "0.5rem", overflow: "hidden"}}>
-                  <SquareImg src={`${imgPath}/${item.backdrop_path}`} />
-                </div>
-              </Link>
-            ))}
+              {items.path.results.map((item: any, idx: number) => (
+                <Link href={`/detail?id=${item.id}`}>
+                  <ImgWrap width={6.44} height={10}>
+                    <Img
+                      margin={-85}
+                      src={`${imgPath}/${item.backdrop_path}`}
+                    />
+                  </ImgWrap>
+                </Link>
+              ))}
             </MovieList>
           </div>
         ))}
-
         <div style={{ height: "5rem" }} />
-
-        <Navigator />
       </main>
+      <Navigator />
     </div>
   );
 }
 
 export async function getServerSideProps() {
+  let res = await fetch(`${api}/latest?api_key=${apiKey}`);
+  const latest = await res.json();
 
-  let res = await fetch(`${api}/movie/latest?api_key=${apiKey}`)
-  const latest = await res.json()
- 
-  res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-  const now_playing = await res.json()
+  res = await fetch(`${api}/now_playing?api_key=${apiKey}`);
+  const now_playing = await res.json();
 
-  res = await fetch(`${api}/movie/popular?api_key=${apiKey}`)
-  const popular = await res.json()
+  res = await fetch(`${api}/popular?api_key=${apiKey}`);
+  const popular = await res.json();
 
-  res = await fetch(`${api}/movie/top_rated?api_key=${apiKey}`)
-  const top_rated = await res.json()
+  res = await fetch(`${api}/top_rated?api_key=${apiKey}`);
+  const top_rated = await res.json();
 
-  res = await fetch(`${api}/movie/upcoming?api_key=${apiKey}`)
-  const upcoming = await res.json()
+  res = await fetch(`${api}/upcoming?api_key=${apiKey}`);
+  const upcoming = await res.json();
 
-  return { props: { latest, now_playing, popular, top_rated, upcoming } }
+  return { props: { latest, now_playing, popular, top_rated, upcoming } };
 }
 
-const Header = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 360px;
-  height: 5rem;
-  background-color: transparent;
-  z-index: 99;
-`;
-const Logo = styled.img`
-  height: 3.5rem;
-  width: 3.5rem;
-`;
-const HeaderText = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
-`;
 const MainImg = styled.img`
   width: 400px;
+  height: 460px;
+  object-fit: cover;
   margin-top: -5rem;
 `;
 const InfoBox = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 300px;
-  margin-bottom: 2rem;
+  padding: 1.5rem 0;
 `;
 
-const CategoryText = styled.div`
-  font-size: 1.2rem;
-  margin-top: 1.5rem;
-  margin-left: 1rem;
-  margin-bottom: 1rem;
+const CategoryText = styled.div<{ fontsize?: number }>`
+  font-size: ${(props) => props.fontsize || 21}px;
+  margin: 1.5rem 0rem 0.5rem 1rem;
   font-family: "SF Pro Display";
-  font-weight: 700;
+  font-weight: 900;
 `;
 
 const MovieList = styled.div`
   display: flex;
-  flex-direction: row;
   width: 400px;
   overflow-y: auto;
 `;
 
-const RoundImg = styled.img`
-  height: 100%;
-  margin-left: -35%;
+const ImgWrap = styled.div<ImgShape>`
+  width: ${(props) => props.width || 6.5}rem;
+  height: ${(props) => props.height || 6.5}rem;
+  border-radius: ${(props) => props.radius || 0}rem;
+  margin-right: 0.5rem;
+  overflow: hidden;
 `;
-const SquareImg = styled.img`
+const Img = styled.img<{ margin?: number }>`
   height: 100%;
-  margin-left: -85%;
+  margin-left: ${(props) => props.margin || -35}%;
 `;

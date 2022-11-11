@@ -1,6 +1,5 @@
-import api from './asset/api'
-import apiKey from './asset/apiKey'
-import imgPath from './asset/imgPath'
+import api from "./asset/api";
+import apiKey from "./asset/apiKey";
 
 // // app/page.js
 // async function getData() {
@@ -15,17 +14,15 @@ import imgPath from './asset/imgPath'
 // }
 
 function Page({ data }) {
-  console.log(this.props.data)
- //res.json()이 찍힙니다
+  console.log(this.props.data);
+  //res.json()이 찍힙니다
 }
-
 
 export async function getServerSideProps() {
- 
-  const res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`)
-  const data = await res.json()
+  const res = await fetch(`${api}/now_playing?api_key=${apiKey}`);
+  const data = await res.json();
 
-  return { props: { data: data } }
+  return { props: { data: data } };
 }
 
-export default Page
+export default Page;
