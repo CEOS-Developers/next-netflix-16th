@@ -314,6 +314,11 @@ export default function App({ Component, pageProps }) {
           line-height: 1;
           font-family: 'Open Sans', sans-serif;
           color: #444444;
+          -ms-overflow-style: none;
+        }
+
+        ::-webkit-scrollbar {
+          display: none;
         }
         ol,
         ul {
