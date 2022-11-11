@@ -9,8 +9,8 @@ function NavigatorItem({ item, selected }: INavigatorItem) {
         <Image
           src={selected ? item.Selected : item.notSelected}
           alt=""
-          width={20}
-          height={20}
+          width={17}
+          height={17}
         />
         <div>{item.name}</div>
       </MenuWrapper>
