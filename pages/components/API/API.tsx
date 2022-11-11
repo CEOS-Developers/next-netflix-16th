@@ -21,3 +21,21 @@ export const getDetail = (id: string) => {
     .get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
     .then((response) => response.data);
 };
+
+export const getTrending = () => {
+  return axios.get(`${API.Preview}`).then((response) => response.data.results);
+};
+
+export const getPopular = () => {
+  return axios.get(`${API.Popular}`).then((response) => response.data.results);
+};
+
+export const getTopRated = () => {
+  return axios.get(`${API.TopRated}`).then((response) => response.data.results);
+};
+
+export const getNowPlaying = () => {
+  return axios
+    .get(`${API.NowPlaying}`)
+    .then((response) => response.data.results);
+};

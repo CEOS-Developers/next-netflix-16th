@@ -1,6 +1,10 @@
-import axios from 'axios';
 import styled from 'styled-components';
-import { API } from './components/API/API';
+import {
+  getNowPlaying,
+  getPopular,
+  getTopRated,
+  getTrending,
+} from './components/API/API';
 import MovieFetch from './components/Main/Mainmovie';
 import Poster from './components/Main/Poster';
 import { IMainMovie } from './Interface/interface';
@@ -41,15 +45,10 @@ export default MainPage;
 
 export async function getServerSideProps() {
   try {
-    const response = await axios.get(`${API.Preview}`);
-    const response2 = await axios.get(`${API.Popular}`);
-    const response3 = await axios.get(`${API.NowPlaying}`);
-    const response4 = await axios.get(`${API.TopRated}`);
-
-    const previewData = response.data.results;
-    const popularData = response2.data.results;
-    const nowPlayingData = response3.data.results;
-    const topRatedData = response4.data.results;
+    const previewData = await getTrending();
+    const popularData = await getPopular();
+    const nowPlayingData = await getNowPlaying();
+    const topRatedData = await getTopRated();
 
     return {
       props: {
