@@ -1,5 +1,7 @@
 import MyHead from '../components/MyHead';
 import styled from 'styled-components';
+import { ServerStyleSheet } from 'styled-components';
+import Head from 'next/head';
 
 export default function home({ data, data2, data3 }) {
   const randomPic = Number([Math.floor(Math.random() * data.results.length)]);
@@ -13,58 +15,50 @@ export default function home({ data, data2, data3 }) {
             src={`https://image.tmdb.org/t/p/original/${data.results[randomPic].poster_path}`}
           />
           <BannerTag2>
-            <BannerImg>Logo</BannerImg>
+            <BannerImg src={`/netflix.png`}></BannerImg>
             <BannerTag1>TvShows</BannerTag1>
             <BannerTag1>Movies</BannerTag1>
             <BannerTag1>My List</BannerTag1>
           </BannerTag2>
         </BoxBanner>
         <BoxMid>
-          <BannerTag1>+</BannerTag1>
-          <BannerButton>PLAY</BannerButton>
+          <BannerTag1>MyList</BannerTag1>
+          <BannerButton>
+            <LittleImg src={`/play.png`} />
+            PLAY
+          </BannerButton>
           <BannerTag1>More Info</BannerTag1>
         </BoxMid>
-      </BoxContainer>
-      <div className="container">
-        <div className="movies-section">
-          <div className="movies-name">Preview</div>
-          <div className="movies-wrapper">
-            {data.results.map((movie) => (
-              <div key={movie.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt=""
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="movies-section">
-          <div className="movies-name">Popular</div>
-          <div className="movies-wrapper">
-            {data3.results.map((movie) => (
-              <div key={movie.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt=""
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="movies-section">
-          <div className="movies-name">Now Playing</div>
-          <div className="movies-wrapper">
-            {data2.results.map((movie) => (
-              <div key={movie.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt=""
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="movies-name">Preview</div>
+        <RowTemplate>
+          {data.results.map((movie) => (
+            <div key={movie.id}>
+              <MovieImg
+                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              />
+            </div>
+          ))}
+        </RowTemplate>
+        <div className="movies-name">Popular</div>
+        <RowTemplate>
+          {data3.results.map((movie) => (
+            <div key={movie.id}>
+              <MovieImg2
+                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              />
+            </div>
+          ))}
+        </RowTemplate>
+        <div className="movies-name">Now Playing</div>
+        <RowTemplate>
+          {data2.results.map((movie) => (
+            <div key={movie.id}>
+              <MovieImg2
+                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              />
+            </div>
+          ))}
+        </RowTemplate>
 
         <style jsx>{`
           .movies-section {
@@ -96,12 +90,12 @@ export default function home({ data, data2, data3 }) {
             height: 161px;
           }
         `}</style>
-      </div>
+      </BoxContainer>
     </div>
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await (
     await fetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=aaf81bdfd64c8485a414ab01ef93d056`
@@ -126,6 +120,30 @@ export async function getStaticProps() {
     },
   };
 }
+const LittleImg = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+const MovieImg2 = styled.img`
+  width: 80px;
+  height: 90px;
+  margin-left: 10px;
+`;
+const MovieImg = styled.img`
+  width: 80px;
+  height: 90px;
+  border-radius: 50%;
+  margin-left: 10px;
+`;
+const RowTemplate = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 
 const BoxBanner = styled.nav`
   display: flex;
@@ -147,23 +165,41 @@ const BannerTag1 = styled.div`
   padding-right: 20px;
   padding-top: 24px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
+  color: white;
 `;
 const BannerTag2 = styled.div`
   position: absolute;
   top: 5%;
-  left: 5%;
+  left: 3%;
   display: flex;
   flex-direction: row;
 `;
 
-const BannerImg = styled.div`
+const BannerImg = styled.img`
   margin-left: 3px;
   margin-right: 80px;
+  width: 40px;
+  height: 50px;
 `;
 
-const BannerButton = styled.button``;
+const BannerButton = styled.button`
+  //position: absolute;
+  width: 110.62px;
+  height: 45px;
+  left: 137px;
+  top: 428px;
+  display: flex;
+  flex-direction: row;
+  background: #c4c4c4;
+  border-radius: 5.625px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+`;
 const BoxMid = styled.div`
   display: flex;
   flex-direction: row;
@@ -172,9 +208,11 @@ const BoxMid = styled.div`
 `;
 
 const RandomPic = styled.img`
-  width: 4px;
+  width: 400px;
   justify-content: center;
   align-items: center;
+  fill: Linear Gradient rgba(0, 0, 0, 0.45) 0% rgba(0, 0, 0, 0) 87.26% #000000
+    100%;
 `;
 
 const BoxContainer = styled.div`
@@ -189,7 +227,7 @@ const BoxContainer = styled.div`
   display: block;
   justify-content: center;
   align-items: center;
-  margin-left: 500px;
+  margin-left: 610px;
 `;
 
 //BoxContainer부터해서 다 적용이 안된다 흑흑..일단 global-style에서 제외시킬 수 있으면 제외시키고 안되면 그냥 styled-components로 통일시켜야될것같당 화이튕!!
