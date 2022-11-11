@@ -47,14 +47,18 @@ export default function Search({ data }: any) {
             .filter((i: any) =>
               i.title.toLowerCase().includes(text.toLowerCase())
             )
-            .map((movie: any) => (
+            .map((movie: any, idx: number) => (
               <Link
                 href={{
                   pathname: "/detail",
                   query: { id: movie.id },
                 }}
               >
-                <SearchItem name={movie.title} imgSrc={movie.backdrop_path} />
+                <SearchItem
+                  name={movie.title}
+                  imgSrc={movie.backdrop_path}
+                  key={idx}
+                />
               </Link>
             ))}
         </ListWrap>
