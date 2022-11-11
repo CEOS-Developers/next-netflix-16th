@@ -18,8 +18,8 @@ function Detail({ movieDetail }: any) {
 }
 export default Detail;
 
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
-  const { id } = context.query;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = context.query.id as string;
 
   try {
     const movieDetail = await getDetail(id);
