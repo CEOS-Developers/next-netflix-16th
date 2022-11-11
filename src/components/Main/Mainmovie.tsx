@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { IMovie} from '../../Interface/interface';
-import { URL } from '../API/API';
+import { IMovie } from '../../Interface/interface';
+import { URL } from '../../API/API';
 import { IMovieFetch } from '../../Interface/interface';
 
 function MovieFetch({ movieData, trending }: IMovieFetch) {
-
   return (
     <MovieWrapper>
       {movieData.map((movieItem: IMovie) => (

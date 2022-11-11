@@ -1,6 +1,6 @@
 import { IPoster } from '../../Interface/interface';
 import styled from 'styled-components';
-import { URL } from '../API/API';
+import { URL } from '../../API/API';
 import Netflix from '../assets/netflix.png';
 import Image from 'next/image';
 import Postfooter from './Posterfooter';
@@ -11,13 +11,14 @@ function Poster({ randomMovieArray }: IPoster) {
 
   return (
     <>
-      <PosterImage src={`${URL.PostPath}/${randomMovie.poster_path}`} />
-      <MenuWrapper>
+    <MenuWrapper>
         <Image src={Netflix} alt="Netflix" width={57} height={57} />
         <Menu>TV shows</Menu>
         <Menu>Movies</Menu>
         <Menu>My List</Menu>
       </MenuWrapper>
+      <PosterImage src={`${URL.PostPath}/${randomMovie.poster_path}`} />
+      
       <Postfooter />
     </>
   );
@@ -33,7 +34,6 @@ const PosterImage = styled.img`
 const MenuWrapper = styled.nav`
   position: absolute;
   width: 375px;
-  bottom: 600px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

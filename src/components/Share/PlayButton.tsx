@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Play from '../assets/play.png';
 import { IPlayButton } from '../../Interface/interface';
 
-function PlayButton({width} : IPlayButton) {
+function PlayButton({ width }: IPlayButton) {
   return (
     <Button width={width}>
       <Image src={Play} alt="play" width={18} height={21} />
@@ -14,10 +14,10 @@ function PlayButton({width} : IPlayButton) {
 
 export default PlayButton;
 
-const Button = styled.div<{width:string}>`
+const Button = styled.div<{ width: string }>`
   background: #c4c4c4;
   border-radius: 5.625px;
-  width: ${({ width }) => (width || `303px`)};
+  width: ${({ width }) => width || `303px`};
   height: 45px;
   cursor: pointer;
   align-items: center;

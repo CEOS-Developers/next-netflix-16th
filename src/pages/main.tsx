@@ -4,10 +4,10 @@ import {
   getPopular,
   getTopRated,
   getTrending,
-} from './components/API/API';
-import MovieFetch from './components/Main/Mainmovie';
-import Poster from './components/Main/Poster';
-import { IMainMovie } from './Interface/interface';
+} from '../API/API';
+import MovieFetch from '../components/Main/Mainmovie';
+import Poster from '../components/Main/Poster';
+import { IMainMovie } from '../Interface/interface';
 
 function MainPage({
   previewData,
@@ -27,10 +27,10 @@ function MainPage({
       <Poster randomMovieArray={randomMovieArray} />
 
       <Title>Trending</Title>
-      <MovieFetch movieData={previewData} trending ={true} />
+      <MovieFetch movieData={previewData} trending={true} />
 
       <Title>Popular</Title>
-      <MovieFetch movieData={popularData}/>
+      <MovieFetch movieData={popularData} />
 
       <Title>Now Playing</Title>
       <MovieFetch movieData={nowPlayingData} />

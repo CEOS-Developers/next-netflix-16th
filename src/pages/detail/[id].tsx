@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import styled from 'styled-components';
-import { getDetail, URL } from '../components/API/API';
-import PlayButton from '../components/Share/PlayButton';
+import { getDetail, URL } from '../../API/API';
+import PlayButton from '../../components/Share/PlayButton';
 
 function Detail({ movieDetail }: any) {
   //movieDatail 너무 많아서 interface 나중에 ㅎㅎ..
