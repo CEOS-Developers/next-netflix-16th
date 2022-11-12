@@ -3,9 +3,9 @@ import Navigator from "../component/navigation/footer";
 import styled from "styled-components";
 import Link from "next/link";
 
-import api from "../asset/api";
-import apiKey from "../asset/apiKey";
-import imgPath from "../asset/imgPath";
+import {api} from "../asset/api-info";
+import {apiKey} from "../asset/api-info";
+import {imgPath} from "../asset/api-info";
 import PlayBtn from "../component/playBtn";
 import Header from "../component/navigation/header";
 

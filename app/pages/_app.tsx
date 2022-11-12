@@ -1,8 +1,6 @@
 import React from "react";
 import "../styles/globals.css";
 import Head from "next/head";
-import Navigator from "../component/navigation/footer";
-import styles from "../styles/Home.module.css";
 
 const App = ({ Component, pageProps }: any) => {
   return (

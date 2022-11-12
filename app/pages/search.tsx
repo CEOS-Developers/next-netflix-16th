@@ -6,8 +6,8 @@ import SearchItem from "../component/search/searchItem";
 import Image from "next/image";
 import Link from "next/link";
 
-import api from "../asset/api";
-import apiKey from "../asset/apiKey";
+import {api} from "../asset/api-info";
+import {apiKey} from "../asset/api-info";
 
 export default function Search({ data }: any) {
   const { text, handleChange, resetText } = useInput("");

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import imgPath from "../../asset/imgPath";
+import {imgPath} from "../../asset/api-info";
 
 const SearchItem = ({ imgSrc, name }: { imgSrc: string; name: string }) => {
   return (

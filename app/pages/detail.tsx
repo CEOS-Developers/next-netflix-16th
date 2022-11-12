@@ -2,10 +2,11 @@ import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 import Navigator from "../component/navigation/footer";
 
-import api from "../asset/api";
-import apiKey from "../asset/apiKey";
-import imgPath from "../asset/imgPath";
 import PlayBtn from "../component/playBtn";
+
+import {api} from "../asset/api-info";
+import {apiKey} from "../asset/api-info";
+import {imgPath} from "../asset/api-info";
 
 export default function Detail({ detail }: any) {
   return (
