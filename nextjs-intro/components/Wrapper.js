@@ -5,8 +5,16 @@ export default function Wrapper({ children }) {
 }
 
 const Container = styled.div`
+  width: 375px;
+  height: 100vh;
+  margin-right: 30rem;
+
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-right: 300px;
-  background-color: black;
+
+  @media screen and (max-width: 767px) {
+    margin-right: 5.5rem;    
+  }
+
 `;

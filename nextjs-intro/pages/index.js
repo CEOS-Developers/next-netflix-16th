@@ -36,17 +36,13 @@ main.getInitialProps = async (ctx) => {
 };
 
 const Wrapper = styled.div`
-  align-items: center;
-  justify-content: center;
-  background-color: black;
+  width: 100%;
+  
 `;
 const NoMore = styled.div`
-  width: 20%;
+  width: 30%;
   height: 100%;
-  background-color: black;
-
-  //margin: 0 auto;
+  
   position: fixed;
-  //margin: 0 auto;
   z-index: 1000;
 `;
