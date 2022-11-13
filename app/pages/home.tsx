@@ -16,7 +16,6 @@ interface ImgShape {
 }
 
 export default function Home({
-  latest,
   now_playing,
   popular,
   top_rated,
@@ -40,6 +39,7 @@ export default function Home({
           <PlayBtn width={110} />
           <img src="/img/home/info3.svg" />
         </InfoBox>
+        {/* ... */}
 
         <div style={{ justifyContent: "start", marginBottom: "2rem" }}>
           <CategoryText fontsize={27}> Previews </CategoryText>
@@ -50,9 +50,6 @@ export default function Home({
                   <Img src={`${imgPath}/${item.backdrop_path}`} key={idx} />
                 </ImgWrap>
               </Link>
-              // <Link href={`/detail?id=${item.id}`}>
-              //     <RoundImg src={`${imgPath}/${item.backdrop_path}`} />
-              // </Link>
             ))}
           </MovieList>
         </div>
@@ -83,10 +80,7 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  let res = await fetch(`${api}/latest?api_key=${apiKey}`);
-  const latest = await res.json();
-
-  res = await fetch(`${api}/now_playing?api_key=${apiKey}`);
+  let res = await fetch(`${api}/now_playing?api_key=${apiKey}`);
   const now_playing = await res.json();
 
   res = await fetch(`${api}/popular?api_key=${apiKey}`);
@@ -98,7 +92,7 @@ export async function getServerSideProps() {
   res = await fetch(`${api}/upcoming?api_key=${apiKey}`);
   const upcoming = await res.json();
 
-  return { props: { latest, now_playing, popular, top_rated, upcoming } };
+  return { props: { now_playing, popular, top_rated, upcoming } };
 }
 
 const MainImg = styled.img`
