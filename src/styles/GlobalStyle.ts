@@ -12,13 +12,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     height: 100vh;
 
+    /* width: 375px; */
     display: flex;
-    justify-content: center;
-
+    justify-content: center !important;
     background-color: black;
-
     -ms-overflow-style: none;
-    font-family: 'SFProDisplay';
     line-height: 1.5;
   }
 

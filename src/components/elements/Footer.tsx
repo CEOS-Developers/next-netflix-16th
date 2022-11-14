@@ -3,7 +3,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { selectedContentState } from '../../states/footerState';
-import CommingSoonIcon from '../icons/CommingSoonIcon';
+import ComingSoonIcon from '../icons/ComingSoonIcon';
 import DownloadsIcon from '../icons/DownloadsIcon';
 import HomeIcon from '../icons/HomeIcon';
 import MoreIcon from '../icons/More';
@@ -15,7 +15,6 @@ const Footer = () => {
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const selectedContent = e.currentTarget.name;
-    setSelectedIcon(selectedContent);
     router.push(`/${selectedContent}`);
   };
 
@@ -30,8 +29,8 @@ const Footer = () => {
         <FooterItem isSelected={selectedIcon === 'search'}>Search</FooterItem>
       </ItemWrapper>
       <ItemWrapper>
-        <CommingSoonIcon onClick={handleOnClick} isSelected={selectedIcon === 'comming-soon'} />
-        <FooterItem isSelected={selectedIcon === 'comming-soon'}>Comming Soon</FooterItem>
+        <ComingSoonIcon onClick={handleOnClick} isSelected={selectedIcon === 'coming-soon'} />
+        <FooterItem isSelected={selectedIcon === 'comming-soon'}>Coming Soon</FooterItem>
       </ItemWrapper>
       <ItemWrapper>
         <DownloadsIcon onClick={handleOnClick} isSelected={selectedIcon === 'downloads'} />
