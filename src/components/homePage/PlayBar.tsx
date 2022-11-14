@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import PlayButton from '../elements/PlayButton';
 
 const PlayBar = () => {
   return (
@@ -8,10 +9,7 @@ const PlayBar = () => {
           <PlayBarImg src="/images/home/my-list.svg" />
           <PlayBarItem>My List</PlayBarItem>
         </ItemWrapper>
-        <PlayButton width="110.62px">
-          <PlayBarImg src="/images/home/play-button.svg" isButton={true} />
-          <PlayBarItem isButton={true}>Play</PlayBarItem>
-        </PlayButton>
+        <PlayButton width="110.62px" />
         <ItemWrapper>
           <PlayBarImg src="/images/home/info.svg" />
           <PlayBarItem>Info</PlayBarItem>
@@ -39,21 +37,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const PlayButton = styled.button<{ width: string }>`
-  width: ${(props) => props.width};
-  height: 45px;
-
-  border: 0;
-  outline: 0;
-
-  background-color: #c4c4c4;
-  border-radius: 5.625px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
 `;
 
 const ItemWrapper = styled.div`

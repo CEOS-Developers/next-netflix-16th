@@ -32,3 +32,8 @@ export interface IFooterIconProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   isSelected: boolean;
 }
+
+export interface DetailPageProps {
+  title: string;
+  description: string;
+}
