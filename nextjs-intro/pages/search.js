@@ -2,24 +2,35 @@ import MyHead from '../components/MyHead';
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 //setSearchResults를 원래 Toprated로 하고 새로 받아오는 값을 set으로 해줘서 계속 바꿔주는 것으로 해보기?
 
 export default function search({TopRated}) {
-const {search,handleChange,resetChat } = useInput("");
-//const [searches, setSearchResults] =useState([]);
+const {search,handleChange,resetChat ,searches} = useInput("");
+
+
+
+
+
+
+
+const newData =searches.results;
+console.log(newData);
+
 
 //searchsms 한단어부터 시작 이걸 async로 넘겨줘서 query값으로 가져오기
 const data =TopRated.results;
+if (newData === undefined){
   return (
     <div>
       <MyHead title="Search" />
-      <SearchForm>
+      <SearchForm >
       <SmallImg src='/searchglass.png'></SmallImg> 
       <Search value={search} onChange={handleChange} placeholder={"Search for movie"}></Search>
       <CloseBut onClick={resetChat}><img src='/close.png'></img></CloseBut>
       </SearchForm>
       <MainHead>Top Searches</MainHead>
+      
       <Container>
         {data.filter((input)=>input.title.toLowerCase().includes(search.toLowerCase()))
         .map((movie)=>(
@@ -35,6 +46,35 @@ const data =TopRated.results;
       </Container>
     </div>
   );
+        }
+  else
+  {
+    return (
+      <div>
+        <MyHead title="Search" />
+        <SearchForm >
+        <SmallImg src='/searchglass.png'></SmallImg> 
+        <Search value={search} onChange={handleChange} placeholder={"Search for movie"}></Search>
+        <CloseBut onClick={resetChat}><img src='/close.png'></img></CloseBut>
+        </SearchForm>
+        <MainHead>Top Searches</MainHead>
+        
+        <Container>
+          {newData
+          .map((movie)=>(
+            <div key={movie.id}>
+              <MovieCon>
+              <MovieImg src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}/>
+                <MovieTitle>{movie.title}</MovieTitle>
+                <PlayImg src='/play-button.png'></PlayImg>
+              </MovieCon>
+            </div>
+          ))}
+       
+        </Container>
+      </div>
+    )};
+ 
 }
 const PlayImg=styled.img`
 margin-left:26.3px;
