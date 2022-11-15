@@ -83,16 +83,16 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  let res = await fetch(`${api}/now_playing?api_key=${apiKey}`);
+  let res = await fetch(`${api}/movie/now_playing?api_key=${apiKey}`);
   const now_playing = await res.json();
 
-  res = await fetch(`${api}/popular?api_key=${apiKey}`);
+  res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
   const popular = await res.json();
 
-  res = await fetch(`${api}/top_rated?api_key=${apiKey}`);
+  res = await fetch(`${api}/movie/top_rated?api_key=${apiKey}`);
   const top_rated = await res.json();
 
-  res = await fetch(`${api}/upcoming?api_key=${apiKey}`);
+  res = await fetch(`${api}/movie/upcoming?api_key=${apiKey}`);
   const upcoming = await res.json();
 
   return { props: { now_playing, popular, top_rated, upcoming } };

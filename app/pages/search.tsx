@@ -8,11 +8,17 @@ import Link from "next/link";
 
 import {api} from "../asset/api-info";
 import {apiKey} from "../asset/api-info";
+import { useEffect } from "react";
 
 export default function Search({ data }: any) {
   const { text, handleChange, resetText } = useInput("");
-
+  
+  console.log(data);
   const movieData = data.results;
+
+  useEffect(()=>{
+    console.log(text);
+  },[text])
 
   return (
     <div className={styles.container}>
@@ -48,19 +54,21 @@ export default function Search({ data }: any) {
               i.title.toLowerCase().includes(text.toLowerCase())
             )
             .map((movie: any, idx: number) => (
-              <Link
-                href={{
-                  pathname: "/detail",
-                  query: { id: movie.id },
-                }}
-                key={idx}
-              >
-                <SearchItem
-                  name={movie.title}
-                  imgSrc={movie.backdrop_path}
+               movie.backdrop_path===null? <></>
+                :
+                <Link
+                  href={{
+                    pathname: "/detail",
+                    query: { id: movie.id },
+                  }}
                   key={idx}
-                />
-              </Link>
+                >
+                  <SearchItem
+                    name={movie.title}
+                    imgSrc={movie.backdrop_path}
+                    key={idx}
+                  />
+                </Link>
             ))}
         </ListWrap>
       </main>
@@ -69,8 +77,11 @@ export default function Search({ data }: any) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`${api}/popular?api_key=${apiKey}`);
+export const getServerSideProps = async (context: any) => {
+  // 임의 텍스트
+  let text='e';
+
+  const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
   const data = await res.json();
 
   return { props: { data: data } };

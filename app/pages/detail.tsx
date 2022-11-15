@@ -29,7 +29,7 @@ export default function Detail({ detail }: any) {
 export const getServerSideProps = async (context: any) => {
   const movieId = context.query.id;
 
-  let res = await fetch(`${api}/${movieId}?api_key=${apiKey}`);
+  let res = await fetch(`${api}/movie/${movieId}?api_key=${apiKey}`);
   const detail = await res.json();
 
   return { props: { detail } };
