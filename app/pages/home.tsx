@@ -27,13 +27,16 @@ export default function Home({
     { title: "Popular", path: popular },
     { title: "Upcoming", path: upcoming },
   ];
+  
+  const randomId = Math.floor(Math.random() * 10);
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <Header />
-        <MainImg src="https://image.tmdb.org/t/p/original/mqsPyyeDCBAghXyjbw4TfEYwljw.jpg" />
-
+        <Link href={`/detail?id=${upcoming.results[randomId].id}`}>
+          <MainImg src={`${imgPath}/${upcoming.results[randomId].backdrop_path}`} />
+        </Link>
         <InfoBox>
           <img src="/img/home/info1.svg" />
           <PlayBtn width={110} />
