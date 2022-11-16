@@ -1,13 +1,13 @@
 import styles from "../styles/Home.module.css";
-import Navigator from "../component/navigation/footer";
+import Navigator from "../../component/navigation/footer";
 import styled from "styled-components";
 import Link from "next/link";
 
-import {api} from "../asset/api-info";
-import {apiKey} from "../asset/api-info";
-import {imgPath} from "../asset/api-info";
-import PlayBtn from "../component/playBtn";
-import Header from "../component/navigation/header";
+import { api } from "../../asset/api-info";
+import { apiKey } from "../../asset/api-info";
+import { imgPath } from "../../asset/api-info";
+import PlayBtn from "../../component/playBtn";
+import Header from "../../component/navigation/header";
 
 interface ImgShape {
   width?: number;
@@ -27,7 +27,7 @@ export default function Home({
     { title: "Popular", path: popular },
     { title: "Upcoming", path: upcoming },
   ];
-  
+
   const randomId = Math.floor(Math.random() * 10);
 
   return (
@@ -35,7 +35,9 @@ export default function Home({
       <main className={styles.main}>
         <Header />
         <Link href={`/detail?id=${upcoming.results[randomId].id}`}>
-          <MainImg src={`${imgPath}/${upcoming.results[randomId].backdrop_path}`} />
+          <MainImg
+            src={`${imgPath}/${upcoming.results[randomId].backdrop_path}`}
+          />
         </Link>
         <InfoBox>
           <img src="/img/home/info1.svg" />

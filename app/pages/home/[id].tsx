@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
-import Navigator from "../component/navigation/footer";
+import Navigator from "../../component/navigation/footer";
+import PlayBtn from "../../component/playBtn";
+import { useRouter } from "next/router";
 
-import PlayBtn from "../component/playBtn";
-
-import {api} from "../asset/api-info";
-import {apiKey} from "../asset/api-info";
-import {imgPath} from "../asset/api-info";
+import { api } from "../../asset/api-info";
+import { apiKey } from "../../asset/api-info";
+import { imgPath } from "../../asset/api-info";
 
 export default function Detail({ detail }: any) {
   return (
