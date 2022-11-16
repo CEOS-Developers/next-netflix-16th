@@ -52,11 +52,14 @@ export default function home({ data, data2, data3 }) {
             ))}
           </RowTemplate>
         </TemplateWrapper>
-        {/* <TemplateWrapper>
+        <TemplateWrapper>
           <TemplateName>Popular</TemplateName>
           <RowTemplate>
             {data3.results.map((movie) => (
-              <Link key={movie.id}>
+              <Link
+                href={`/movies/${movie.original_title}/${movie.id}`}
+                key={movie.id}
+              >
                 <MovieImg2
                   src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 />
@@ -68,14 +71,17 @@ export default function home({ data, data2, data3 }) {
           <TemplateName>Now Playing</TemplateName>
           <RowTemplate>
             {data2.results.map((movie) => (
-              <Link key={movie.id}>
+              <Link
+                href={`/movies/${movie.original_title}/${movie.id}`}
+                key={movie.id}
+              >
                 <MovieImg2
                   src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 />
               </Link>
             ))}
           </RowTemplate>
-        </TemplateWrapper> */}
+        </TemplateWrapper>
       </BoxContainer>
     </>
   );
