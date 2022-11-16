@@ -4,6 +4,7 @@ import useInput from '../hooks/useInput';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import MovieModal from '../components/Modal';
+import { faMobileScreen } from '@fortawesome/free-solid-svg-icons';
 //setSearchResults를 원래 Toprated로 하고 새로 받아오는 값을 set으로 해줘서 계속 바꿔주는 것으로 해보기?
 
 export default function search({ TopRated }) {
@@ -61,7 +62,11 @@ export default function search({ TopRated }) {
             <div key={movie.id}>
               <MovieCon onClick={() => openModal(movie)}>
                 <MovieImg
-                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                  src={
+                    movie.backdrop_path === null
+                      ? `/netflix2.png`
+                      : `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
+                  }
                 />
                 <MovieTitle>{movie.title}</MovieTitle>
                 <PlayImg src="/play-button.png"></PlayImg>
