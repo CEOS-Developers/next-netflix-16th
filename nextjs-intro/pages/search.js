@@ -159,6 +159,10 @@ const MovieCon = styled.ul`
 const MovieImg = styled.img`
   width: 146px;
   height: 76px;
+
+  object-fit: cover;
+  background: black;
+
   margin-right: 10px;
 
   display: block;
