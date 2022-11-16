@@ -65,8 +65,7 @@ export default function Search({ data }: any) {
                 :
                 <Link
                   href={{
-                    pathname: "/detail",
-                    query: { id: movie.id },
+                    pathname: `/detail/${movie.id}`,
                   }}
                   key={`link_${idx}`}
                 >
