@@ -1,4 +1,4 @@
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import Navigator from "../../component/navigation/footer";
 import styled from "styled-components";
 import Link from "next/link";
@@ -52,7 +52,10 @@ export default function Home({
             {upcoming.results.map((item: any, idx: number) => (
               <Link href={`/detail?id=${item.id}`} key={`PreLink_${idx}`}>
                 <ImgWrap radius={50} key={`preImgWrap_${idx}`}>
-                  <Img src={`${imgPath}/${item.backdrop_path}`} key={`preImg_${idx}`} />
+                  <Img
+                    src={`${imgPath}/${item.backdrop_path}`}
+                    key={`preImg_${idx}`}
+                  />
                 </ImgWrap>
               </Link>
             ))}
