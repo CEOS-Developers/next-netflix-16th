@@ -50,9 +50,9 @@ export default function Home({
           <CategoryText fontsize={27}> Previews </CategoryText>
           <MovieList>
             {upcoming.results.map((item: any, idx: number) => (
-              <Link href={`/detail?id=${item.id}`} key={idx}>
-                <ImgWrap radius={50} key={idx}>
-                  <Img src={`${imgPath}/${item.backdrop_path}`} key={idx} />
+              <Link href={`/detail?id=${item.id}`} key={`PreLink_${idx}`}>
+                <ImgWrap radius={50} key={`preImgWrap_${idx}`}>
+                  <Img src={`${imgPath}/${item.backdrop_path}`} key={`preImg_${idx}`} />
                 </ImgWrap>
               </Link>
             ))}
@@ -60,16 +60,16 @@ export default function Home({
         </div>
 
         {title.map((items: any, idx: number) => (
-          <div key={idx} style={{ justifyContent: "start" }}>
-            <CategoryText key={idx}> {items.title} </CategoryText>
+          <div key={`div_${idx}`} style={{ justifyContent: "start" }}>
+            <CategoryText key={`catgText_${idx}`}> {items.title} </CategoryText>
             <MovieList>
               {items.path.results.map((item: any, idx: number) => (
-                <Link href={`/detail?id=${item.id}`} key={idx}>
-                  <ImgWrap width={6.44} height={10} key={idx}>
+                <Link href={`/detail?id=${item.id}`} key={`catgLink_${idx}`}>
+                  <ImgWrap width={6.44} height={10} key={`catgImgWrap_${idx}`}>
                     <Img
                       margin={-85}
                       src={`${imgPath}/${item.backdrop_path}`}
-                      key={idx}
+                      key={`catgImg_${idx}`}
                     />
                   </ImgWrap>
                 </Link>
