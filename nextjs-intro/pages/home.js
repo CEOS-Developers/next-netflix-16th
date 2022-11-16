@@ -12,9 +12,6 @@ export default function home({ data, data2, data3 }) {
       <MyHead title="Home" />
       <BoxContainer>
         <BoxBanner>
-          <RandomPic
-            src={`https://image.tmdb.org/t/p/original/${data.results[randomPic].poster_path}`}
-          />
           <Header>
             <Link href={'/home'}>
               <BannerImg src={`/netflix.png`}></BannerImg>
@@ -29,6 +26,9 @@ export default function home({ data, data2, data3 }) {
               <BannerTag>My List</BannerTag>
             </Link>
           </Header>
+          <RandomPic
+            src={`https://image.tmdb.org/t/p/original/${data.results[randomPic].poster_path}`}
+          />
         </BoxBanner>
         <BannerText>#2 in Nigeria Today</BannerText>
         <BoxMid>
@@ -38,7 +38,12 @@ export default function home({ data, data2, data3 }) {
           </BannerTag>
           <BannerButton>
             <LittleImg src={`/play.png`} />
-            PLAY
+            <Link
+              href={`/videos/${data.results[randomPic].id}`}
+              key={data.results[randomPic].id}
+            >
+              PLAY
+            </Link>
           </BannerButton>
           <BannerTag>
             <FontAwesomeIcon icon={faCircleExclamation} size={'1x'} />

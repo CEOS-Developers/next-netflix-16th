@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -13,7 +15,9 @@ export default function Detail({ data }) {
       <Contents>
         <MoviePlayBtn>
           <FontAwesomeIcon icon={faPlay} />
-          Play
+          <Link href={`/videos/${data.id}`} key={data.id}>
+            Play
+          </Link>
         </MoviePlayBtn>
         <MovieName>{data.original_title}</MovieName>
         <MovieText>{data.overview}</MovieText>
