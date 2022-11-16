@@ -16,10 +16,18 @@ export default function home({ data, data2, data3 }) {
             src={`https://image.tmdb.org/t/p/original/${data.results[randomPic].poster_path}`}
           />
           <Header>
-            <BannerImg src={`/netflix.png`}></BannerImg>
-            <BannerTag>TV Shows</BannerTag>
-            <BannerTag>Movies</BannerTag>
-            <BannerTag>My List</BannerTag>
+            <Link href={'/home'}>
+              <BannerImg src={`/netflix.png`}></BannerImg>
+            </Link>
+            <Link href={'/tv-shows'}>
+              <BannerTag>TV Shows</BannerTag>
+            </Link>
+            <Link href={'/movies'}>
+              <BannerTag>Movies</BannerTag>
+            </Link>
+            <Link href={'/my-list'}>
+              <BannerTag>My List</BannerTag>
+            </Link>
           </Header>
         </BoxBanner>
         <BannerText>#2 in Nigeria Today</BannerText>
