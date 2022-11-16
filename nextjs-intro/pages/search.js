@@ -20,23 +20,23 @@ export default function search({ TopRated }) {
 
   //searchsms 한단어부터 시작 이걸 async로 넘겨줘서 query값으로 가져오기
   const data = TopRated.results;
-  if (newData === undefined) {
-    return (
-      <div>
-        <MyHead title="Search" />
-        <SearchForm>
-          <SmallImg src="/searchglass.png"></SmallImg>
-          <Search
-            value={search}
-            onChange={handleChange}
-            placeholder={'Search for movie'}
-          ></Search>
-          <CloseBut onClick={resetChat}>
-            <img src="/close.png"></img>
-          </CloseBut>
-        </SearchForm>
-        <MainHead>Top Searches</MainHead>
+  return (
+    <div>
+      <MyHead title="Search" />
+      <SearchForm>
+        <SmallImg src="/searchglass.png"></SmallImg>
+        <Search
+          value={search}
+          onChange={handleChange}
+          placeholder={'Search for movie'}
+        ></Search>
+        <CloseBut onClick={resetChat}>
+          <img src="/close.png"></img>
+        </CloseBut>
+      </SearchForm>
+      <MainHead>Top Searches</MainHead>
 
+      {newData === undefined ? (
         <Container>
           {data
             .filter((input) =>
@@ -55,25 +55,7 @@ export default function search({ TopRated }) {
             ))}
           {modalState && <MovieModal {...curMovie} setModalOpen={setModal} />}
         </Container>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <MyHead title="Search" />
-        <SearchForm>
-          <SmallImg src="/searchglass.png"></SmallImg>
-          <Search
-            value={search}
-            onChange={handleChange}
-            placeholder={'Search for movie'}
-          ></Search>
-          <CloseBut onClick={resetChat}>
-            <img src="/close.png"></img>
-          </CloseBut>
-        </SearchForm>
-        <MainHead>Top Searches</MainHead>
-
+      ) : (
         <Container>
           {newData.map((movie) => (
             <div key={movie.id}>
@@ -89,9 +71,9 @@ export default function search({ TopRated }) {
 
           {modalState && <MovieModal {...curMovie} setModalOpen={setModal} />}
         </Container>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
 const PlayImg = styled.img`
   margin-left: 26.3px;
