@@ -8,17 +8,24 @@ import Link from "next/link";
 
 import {api} from "../asset/api-info";
 import {apiKey} from "../asset/api-info";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Search({ data }: any) {
   const { text, handleChange, resetText } = useInput("");
-  
-  console.log(data);
-  const movieData = data.results;
+  // const [movieData, setMovie] = useState(data.results)
+  let movieData = data.results;
 
   useEffect(()=>{
-    console.log(text);
+    // setMovie(searchData(text))
+    movieData = searchData(text);
+    console.log(movieData);
   },[text])
+
+  const searchData = async(text:string) => {
+    const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
+    const data = await res.json();
+    return data.results;
+  }
 
   return (
     <div className={styles.container}>
@@ -61,12 +68,12 @@ export default function Search({ data }: any) {
                     pathname: "/detail",
                     query: { id: movie.id },
                   }}
-                  key={idx}
+                  key={`link_${idx}`}
                 >
                   <SearchItem
                     name={movie.title}
                     imgSrc={movie.backdrop_path}
-                    key={idx}
+                    key={`searchItem_${idx}`}
                   />
                 </Link>
             ))}
@@ -77,11 +84,10 @@ export default function Search({ data }: any) {
   );
 }
 
-export const getServerSideProps = async (context: any) => {
-  // 임의 텍스트
-  let text='e';
+// const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
 
-  const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
+export const getServerSideProps = async (context: any) => {
+  const res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
   const data = await res.json();
 
   return { props: { data: data } };
