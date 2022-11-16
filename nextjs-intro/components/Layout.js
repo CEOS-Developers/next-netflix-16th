@@ -12,12 +12,9 @@ export default function Layout({ children }) {
 
 const Container = styled.div`
   width: 375px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const Content = styled.div`
   width: 100%;
+  height: calc(100vh - 48px);
 `;

@@ -11,7 +11,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function NavBar() {
+const NavBar = () => {
   const router = useRouter();
   return (
     <Nav>
@@ -89,7 +89,7 @@ export default function NavBar() {
       `}</style>
     </Nav>
   );
-}
+};
 
 const Nav = styled.nav`
   width: 375px;
@@ -110,3 +110,5 @@ const Container = styled.div`
 
   background: #121212;
 `;
+
+export default NavBar;

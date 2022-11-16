@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import MyHead from '../components/MyHead';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,10 +16,18 @@ export default function home({ data, data2, data3 }) {
             src={`https://image.tmdb.org/t/p/original/${data.results[randomPic].poster_path}`}
           />
           <Header>
-            <BannerImg src={`/netflix.png`}></BannerImg>
-            <BannerTag>TV Shows</BannerTag>
-            <BannerTag>Movies</BannerTag>
-            <BannerTag>My List</BannerTag>
+            <Link href={'/home'}>
+              <BannerImg src={`/netflix.png`}></BannerImg>
+            </Link>
+            <Link href={'/tv-shows'}>
+              <BannerTag>TV Shows</BannerTag>
+            </Link>
+            <Link href={'/movies'}>
+              <BannerTag>Movies</BannerTag>
+            </Link>
+            <Link href={'/my-list'}>
+              <BannerTag>My List</BannerTag>
+            </Link>
           </Header>
         </BoxBanner>
         <BannerText>#2 in Nigeria Today</BannerText>
@@ -40,11 +49,14 @@ export default function home({ data, data2, data3 }) {
           <TemplateName>Preview</TemplateName>
           <RowTemplate>
             {data.results.map((movie) => (
-              <div key={movie.id}>
+              <Link
+                href={`/movies/${movie.original_title}/${movie.id}`}
+                key={movie.id}
+              >
                 <MovieImg
                   src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 />
-              </div>
+              </Link>
             ))}
           </RowTemplate>
         </TemplateWrapper>
@@ -52,11 +64,14 @@ export default function home({ data, data2, data3 }) {
           <TemplateName>Popular</TemplateName>
           <RowTemplate>
             {data3.results.map((movie) => (
-              <div key={movie.id}>
+              <Link
+                href={`/movies/${movie.original_title}/${movie.id}`}
+                key={movie.id}
+              >
                 <MovieImg2
                   src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 />
-              </div>
+              </Link>
             ))}
           </RowTemplate>
         </TemplateWrapper>
@@ -64,11 +79,14 @@ export default function home({ data, data2, data3 }) {
           <TemplateName>Now Playing</TemplateName>
           <RowTemplate>
             {data2.results.map((movie) => (
-              <div key={movie.id}>
+              <Link
+                href={`/movies/${movie.original_title}/${movie.id}`}
+                key={movie.id}
+              >
                 <MovieImg2
                   src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 />
-              </div>
+              </Link>
             ))}
           </RowTemplate>
         </TemplateWrapper>
