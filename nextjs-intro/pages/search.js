@@ -3,12 +3,20 @@ import styled from 'styled-components';
 import useInput from '../hooks/useInput';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import MovieModal from '../components/Modal';
 //setSearchResults를 원래 Toprated로 하고 새로 받아오는 값을 set으로 해줘서 계속 바꿔주는 것으로 해보기?
 
 export default function search({ TopRated }) {
   const { search, handleChange, resetChat, searches } = useInput('');
+  const [modalState, setModal] = useState(false);
+  const [curMovie, setCurMov] = useState({});
 
   const newData = searches.results;
+
+  const openModal = (movie) => {
+    setModal(true);
+    setCurMov(movie);
+  };
 
   //searchsms 한단어부터 시작 이걸 async로 넘겨줘서 query값으로 가져오기
   const data = TopRated.results;
@@ -36,7 +44,7 @@ export default function search({ TopRated }) {
             )
             .map((movie) => (
               <div key={movie.id}>
-                <MovieCon>
+                <MovieCon onClick={() => openModal(movie)}>
                   <MovieImg
                     src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                   />
@@ -45,6 +53,7 @@ export default function search({ TopRated }) {
                 </MovieCon>
               </div>
             ))}
+          {modalState && <MovieModal {...curMovie} setModalOpen={setModal} />}
         </Container>
       </div>
     );
@@ -68,7 +77,7 @@ export default function search({ TopRated }) {
         <Container>
           {newData.map((movie) => (
             <div key={movie.id}>
-              <MovieCon>
+              <MovieCon onClick={() => openModal(movie)}>
                 <MovieImg
                   src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                 />
@@ -77,6 +86,8 @@ export default function search({ TopRated }) {
               </MovieCon>
             </div>
           ))}
+
+          {modalState && <MovieModal {...curMovie} setModalOpen={setModal} />}
         </Container>
       </div>
     );
