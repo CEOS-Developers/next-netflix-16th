@@ -13,8 +13,13 @@ import { useEffect, useState } from "react";
 export default function Search({ data }: any) {
   const { text, handleChange, resetText } = useInput("");
   const [movieData, setMovie] = useState([]);
-  // let movieData = data.results;
+
   let searchRes, searchDt;
+
+  useEffect(()=>{
+    setMovie(data.results);
+  },[data])
+
 
   useEffect(()=>{
     async function searchData (){
