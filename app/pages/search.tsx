@@ -6,26 +6,31 @@ import SearchItem from "../component/search/searchItem";
 import Image from "next/image";
 import Link from "next/link";
 
-import {api} from "../asset/api-info";
-import {apiKey} from "../asset/api-info";
+import { api } from "../asset/api-info";
+import { apiKey } from "../asset/api-info";
 import { useEffect, useState } from "react";
 
 export default function Search({ data }: any) {
+  console.log(data);
   const { text, handleChange, resetText } = useInput("");
-  // const [movieData, setMovie] = useState(data.results)
-  let movieData = data.results;
+  const [movieData, setMovie] = useState([]);
+  let searchRes, searchDt;
 
-  useEffect(()=>{
-    // setMovie(searchData(text))
-    movieData = searchData(text);
-    console.log(movieData);
-  },[text])
+  useEffect(() => {
+    setMovie(data.results);
+  }, [data]);
 
-  const searchData = async(text:string) => {
-    const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
-    const data = await res.json();
-    return data.results;
-  }
+  useEffect(() => {
+    async function searchData() {
+      searchRes = await fetch(
+        `${api}/search/movie?api_key=${apiKey}&query=${text}`
+      );
+      searchDt = await searchRes.json();
+      setMovie(searchDt.results);
+      console.log("searchDt : ", searchRes);
+    }
+    if (text != "") searchData();
+  }, [text]);
 
   return (
     <div className={styles.container}>
@@ -60,13 +65,13 @@ export default function Search({ data }: any) {
             .filter((i: any) =>
               i.title.toLowerCase().includes(text.toLowerCase())
             )
-            .map((movie: any, idx: number) => (
-               movie.backdrop_path===null? <></>
-                :
+            .map((movie: any, idx: number) =>
+              movie.backdrop_path === null ? (
+                <></>
+              ) : (
                 <Link
                   href={{
-                    pathname: "/detail",
-                    query: { id: movie.id },
+                    pathname: `/detail/${movie.id}`,
                   }}
                   key={`link_${idx}`}
                 >
@@ -76,7 +81,8 @@ export default function Search({ data }: any) {
                     key={`searchItem_${idx}`}
                   />
                 </Link>
-            ))}
+              )
+            )}
         </ListWrap>
       </main>
       <Navigator />
@@ -84,14 +90,12 @@ export default function Search({ data }: any) {
   );
 }
 
-// const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
-
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async () => {
   const res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
   const data = await res.json();
 
   return { props: { data: data } };
-}
+};
 
 const SearchBar = styled.div`
   display: flex;

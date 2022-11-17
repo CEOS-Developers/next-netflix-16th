@@ -1,13 +1,13 @@
-import styles from "../../styles/Home.module.css";
-import Navigator from "../../component/navigation/footer";
+import styles from "../styles/Home.module.css";
+import Navigator from "../component/navigation/footer";
 import styled from "styled-components";
 import Link from "next/link";
 
-import { api } from "../../asset/api-info";
-import { apiKey } from "../../asset/api-info";
-import { imgPath } from "../../asset/api-info";
-import PlayBtn from "../../component/playBtn";
-import Header from "../../component/navigation/header";
+import { api } from "../asset/api-info";
+import { apiKey } from "../asset/api-info";
+import { imgPath } from "../asset/api-info";
+import PlayBtn from "../component/playBtn";
+import Header from "../component/navigation/header";
 
 interface ImgShape {
   width?: number;
@@ -34,7 +34,7 @@ export default function Home({
     <div className={styles.container}>
       <main className={styles.main}>
         <Header />
-        <Link href={`/detail?id=${upcoming.results[randomId].id}`}>
+        <Link href={{ pathname: `/detail/${upcoming.results[randomId].id}` }}>
           <MainImg
             src={`${imgPath}/${upcoming.results[randomId].backdrop_path}`}
           />
@@ -50,7 +50,10 @@ export default function Home({
           <CategoryText fontsize={27}> Previews </CategoryText>
           <MovieList>
             {upcoming.results.map((item: any, idx: number) => (
-              <Link href={`/detail?id=${item.id}`} key={`PreLink_${idx}`}>
+              <Link
+                href={{ pathname: `/detail/${item.id}` }}
+                key={`PreLink_${idx}`}
+              >
                 <ImgWrap radius={50} key={`preImgWrap_${idx}`}>
                   <Img
                     src={`${imgPath}/${item.backdrop_path}`}
@@ -67,7 +70,10 @@ export default function Home({
             <CategoryText key={`catgText_${idx}`}> {items.title} </CategoryText>
             <MovieList>
               {items.path.results.map((item: any, idx: number) => (
-                <Link href={`/detail?id=${item.id}`} key={`catgLink_${idx}`}>
+                <Link
+                  href={{ pathname: `/detail/${item.id}` }}
+                  key={`catgLink_${idx}`}
+                >
                   <ImgWrap width={6.44} height={10} key={`catgImgWrap_${idx}`}>
                     <Img
                       margin={-85}
