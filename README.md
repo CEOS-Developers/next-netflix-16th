@@ -1,7 +1,22 @@
 ### 실행방법
 npm run dev
 
-## Key Questions
+## 6주차 Key Questions
+
+### 1. Static Routing / Dynamic Routing
+
+#### (1) Static Routing (정적 라우팅)
+Router(라우터)에게 필요한 정보들을 수동으로 사전 입력해야 한다. 
+고정된 페이지로 라우팅되기 때문에 누가 언제 접속하더라도 같은 페이지로 라우팅된다.
+
+#### (2) Dynamic Routing (동적 라우팅)
+Routing Table(라우팅 테이블)에서 현재 상태에 따라 경로를 자동 조정하는 것이다. 
+가변적인 페이지로 라우팅되기 때문에 실제 소스코드는 한 페이지지만 글 번호나 글의 id에 따라서 주소가 변경된다.
+Next.js에서 동적 라우팅 시, 대괄호 안에 들어있는 문구는 변수의 기능을 한다.
+라우터 객체를 이용해 이 변수의 값을 지정해줄 수 있으며, 이 변수는 문서 내에서 자유롭게 활용이 가능하다.
+
+
+## 5주차 Key Questions
 
 ### 1. Server Side Rendering과 Client Side Rendering의 차이
 
