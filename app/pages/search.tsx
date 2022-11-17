@@ -11,14 +11,9 @@ import { apiKey } from "../asset/api-info";
 import { useEffect, useState } from "react";
 
 export default function Search({ data }: any) {
-  console.log(data);
   const { text, handleChange, resetText } = useInput("");
-  const [movieData, setMovie] = useState([]);
+  const [movieData, setMovie] = useState(data.results);
   let searchRes, searchDt;
-
-  useEffect(() => {
-    setMovie(data.results);
-  }, [data]);
 
   useEffect(() => {
     async function searchData() {
@@ -27,7 +22,6 @@ export default function Search({ data }: any) {
       );
       searchDt = await searchRes.json();
       setMovie(searchDt.results);
-      console.log("searchDt : ", searchRes);
     }
     if (text != "") searchData();
   }, [text]);
@@ -104,7 +98,7 @@ const SearchBar = styled.div`
   background: rgb(66, 66, 66);
   width: 100%;
   height: 52px;
-  margin: 44px 0 10px 0;
+  margin: 44px 0 15px 0;
 `;
 
 const ImgWrap = styled.div`
@@ -127,9 +121,9 @@ const ListWrap = styled.div`
   overflow-y: auto;
   height: calc(100vh - 11rem);
 `;
-const Title = styled.div`
+const Title = styled.h3`
   font-size: 26.7482px;
   font-weight: 700;
-  padding: 15px 10px;
   text-align: left;
+  margin: 13px 0;
 `;

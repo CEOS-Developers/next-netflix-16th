@@ -44,7 +44,6 @@ export default function Home({
           <PlayBtn width={110} />
           <img src="/img/home/info3.svg" />
         </InfoBox>
-        {/* ... */}
 
         <div style={{ justifyContent: "start", marginBottom: "2rem" }}>
           <CategoryText fontsize={27}> Previews </CategoryText>
@@ -122,7 +121,7 @@ const InfoBox = styled.div`
   padding: 1.5rem 0;
 `;
 
-const CategoryText = styled.div<{ fontsize?: number }>`
+const CategoryText = styled.h3<{ fontsize?: number }>`
   font-size: ${(props) => props.fontsize || 21}px;
   margin: 1.5rem 0rem 0.5rem 1rem;
   font-family: "SF Pro Display";
