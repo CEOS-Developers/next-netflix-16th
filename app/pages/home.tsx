@@ -3,9 +3,9 @@ import Navigator from "../component/navigation/footer";
 import styled from "styled-components";
 import Link from "next/link";
 
-import {api} from "../asset/api-info";
-import {apiKey} from "../asset/api-info";
-import {imgPath} from "../asset/api-info";
+import { api } from "../asset/api-info";
+import { apiKey } from "../asset/api-info";
+import { imgPath } from "../asset/api-info";
 import PlayBtn from "../component/playBtn";
 import Header from "../component/navigation/header";
 
@@ -27,30 +27,37 @@ export default function Home({
     { title: "Popular", path: popular },
     { title: "Upcoming", path: upcoming },
   ];
-  
+
   const randomId = Math.floor(Math.random() * 10);
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <Header />
-        <Link href={{ pathname: `/detail/${upcoming.results[randomId].id}`}}>
-          <MainImg src={`${imgPath}/${upcoming.results[randomId].backdrop_path}`} />
+        <Link href={{ pathname: `/detail/${upcoming.results[randomId].id}` }}>
+          <MainImg
+            src={`${imgPath}/${upcoming.results[randomId].backdrop_path}`}
+          />
         </Link>
         <InfoBox>
           <img src="/img/home/info1.svg" />
           <PlayBtn width={110} />
           <img src="/img/home/info3.svg" />
         </InfoBox>
-        {/* ... */}
 
         <div style={{ justifyContent: "start", marginBottom: "2rem" }}>
           <CategoryText fontsize={27}> Previews </CategoryText>
           <MovieList>
             {upcoming.results.map((item: any, idx: number) => (
-              <Link href={{ pathname: `/detail/${item.id}`}} key={`PreLink_${idx}`}>
+              <Link
+                href={{ pathname: `/detail/${item.id}` }}
+                key={`PreLink_${idx}`}
+              >
                 <ImgWrap radius={50} key={`preImgWrap_${idx}`}>
-                  <Img src={`${imgPath}/${item.backdrop_path}`} key={`preImg_${idx}`} />
+                  <Img
+                    src={`${imgPath}/${item.backdrop_path}`}
+                    key={`preImg_${idx}`}
+                  />
                 </ImgWrap>
               </Link>
             ))}
@@ -62,7 +69,10 @@ export default function Home({
             <CategoryText key={`catgText_${idx}`}> {items.title} </CategoryText>
             <MovieList>
               {items.path.results.map((item: any, idx: number) => (
-                <Link href={{ pathname: `/detail/${item.id}`}} key={`catgLink_${idx}`}>
+                <Link
+                  href={{ pathname: `/detail/${item.id}` }}
+                  key={`catgLink_${idx}`}
+                >
                   <ImgWrap width={6.44} height={10} key={`catgImgWrap_${idx}`}>
                     <Img
                       margin={-85}
@@ -111,7 +121,7 @@ const InfoBox = styled.div`
   padding: 1.5rem 0;
 `;
 
-const CategoryText = styled.div<{ fontsize?: number }>`
+const CategoryText = styled.h3<{ fontsize?: number }>`
   font-size: ${(props) => props.fontsize || 21}px;
   margin: 1.5rem 0rem 0.5rem 1rem;
   font-family: "SF Pro Display";

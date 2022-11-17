@@ -4,9 +4,9 @@ import Navigator from "../../component/navigation/footer";
 
 import PlayBtn from "../../component/playBtn";
 
-import {api} from "../../asset/api-info";
-import {apiKey} from "../../asset/api-info";
-import {imgPath} from "../../asset/api-info";
+import { api } from "../../asset/api-info";
+import { apiKey } from "../../asset/api-info";
+import { imgPath } from "../../asset/api-info";
 
 export default function Detail({ detail }: any) {
   return (
