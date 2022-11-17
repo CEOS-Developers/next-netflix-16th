@@ -12,20 +12,19 @@ import { useEffect, useState } from "react";
 
 export default function Search({ data }: any) {
   const { text, handleChange, resetText } = useInput("");
-  // const [movieData, setMovie] = useState(data.results)
-  let movieData = data.results;
+  const [movieData, setMovie] = useState([]);
+  // let movieData = data.results;
+  let searchRes, searchDt;
 
   useEffect(()=>{
-    // setMovie(searchData(text))
-    movieData = searchData(text);
-    console.log(movieData);
+    async function searchData (){
+      searchRes = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
+      searchDt = await searchRes.json();
+      setMovie(searchDt.results)
+      console.log("searchDt : ", searchRes);
+    }
+    if(text!='') searchData();
   },[text])
-
-  const searchData = async(text:string) => {
-    const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
-    const data = await res.json();
-    return data.results;
-  }
 
   return (
     <div className={styles.container}>
@@ -83,9 +82,7 @@ export default function Search({ data }: any) {
   );
 }
 
-// const res = await fetch(`${api}/search/movie?api_key=${apiKey}&query=${text}`);
-
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async () => {
   const res = await fetch(`${api}/movie/popular?api_key=${apiKey}`);
   const data = await res.json();
 
