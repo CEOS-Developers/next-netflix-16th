@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 
 export default function movies({ data }) {
+  console.log(data);
   return (
     <div>
       <MyHead title="Movies" />

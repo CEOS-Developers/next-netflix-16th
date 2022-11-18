@@ -7,28 +7,22 @@ import MyHead from '../components/MyHead';
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
 
-//setSearchResults를 원래 Toprated로 하고 새로 받아오는 값을 set으로 해줘서 계속 바꿔주는 것으로 해보기?
-
 export default function search({ TopRated }) {
-  const getMovieList = ({ pageParam = OFFSET }) =>
+  const getMovieList = () =>
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}`,
-        {
-          // axios.get(url, config),
-          // url전체를 템플릿 리터럴로 넘기든 config의 params로 넘기든 취향에 맞게 넘기자.
-          params: {
-            limit: OFFSET,
-            offset: pageParam,
-          },
-        }
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=aaf81bdfd64c8485a414ab01ef93d056`
       )
-      .then((res) => res?.movieData);
+      .then((response) => response.data);
+
+  useEffect(() => {
+    getMovieList();
+  }, []);
 
   const {
-    movieData, // 💡 data.pages를 갖고 있는 배열
+    movieData, // data를 갖고 있는 배열
     error, // error 객체
-    fetchNextPage, // 💡 다음 페이지를 불러오는 함수
+    fetchNextPage, // 다음 페이지를 불러오는 함수
     hasNextPage, // 다음 페이지가 있는지 여부, Boolean
     isFetching, // 첫 페이지 fetching 여부, Boolean, 잘 안쓰인다
     isFetchingNextPage, // 추가 페이지 fetching 여부, Boolean
@@ -36,8 +30,6 @@ export default function search({ TopRated }) {
   } = useInfiniteQuery('movieList', getMovieList, {
     getNextPageParam: (lastPage, page) => (hasNextPage ? Number : 0),
   });
-
-  const OFFSET = 30;
 
   // const { search, handleChange, resetChat, searches } = useInput('');
   // const [modalState, setModal] = useState(false);
