@@ -22,10 +22,10 @@ export default function comming() {
     isFetchingNextPage, // 추가 페이지 fetching 여부, Boolean
     status,
   } = useInfiniteQuery('movieList', getMovieList, {
-    getNextPageParam: (lastPage, page) => (hasNextPage ? Number : 0),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.page + 1;
+    },
   });
-
-  const OFFSET = 1;
 
   return (
     <div>
