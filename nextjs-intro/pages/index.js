@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import MyHead from '../components/MyHead';
+import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
-import head from 'next/head';
+
 import styled from 'styled-components';
 import lottie from 'lottie-web';
+
+import MyHead from '../components/MyHead';
 
 export default function main() {
   const router = useRouter();
@@ -37,12 +38,11 @@ main.getInitialProps = async (ctx) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  
 `;
 const NoMore = styled.div`
   width: 30%;
   height: 100%;
-  
+
   position: fixed;
   z-index: 1000;
 `;
