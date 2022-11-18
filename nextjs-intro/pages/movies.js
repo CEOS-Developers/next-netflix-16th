@@ -14,7 +14,7 @@ export default function movies({ data }) {
               src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             />
             <MovieContent>
-              <MovieName>{movie.original_name}</MovieName>
+              <MovieName>{movie.original_title}</MovieName>
               <MovieText>{movie.overview}</MovieText>
             </MovieContent>
           </Movie>
@@ -28,7 +28,7 @@ const API_KEY = process.env.API_KEY;
 
 export async function getServerSideProps() {
   const data = await (
-    await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
+    await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
   ).json();
 
   return { props: { data } };
@@ -36,7 +36,7 @@ export async function getServerSideProps() {
 
 const MovieWrapper = styled.div`
   width: 100%;
-  padding: 1rem;
+  padding: 5rem 1rem 1rem;
 
   display: flex;
   flex-direction: column;
