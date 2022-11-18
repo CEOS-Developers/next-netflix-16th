@@ -1,7 +1,9 @@
+import React from 'react';
+
 import styled from 'styled-components';
 import Link from 'next/link';
 
-export default function Header() {
+const Header = () => {
   return (
     <HeaderWrapper>
       <Link href={'/home'}>
@@ -18,7 +20,7 @@ export default function Header() {
       </Link>
     </HeaderWrapper>
   );
-}
+};
 
 const HeaderWrapper = styled.div`
   width: 375px;
@@ -46,3 +48,5 @@ const BannerTag = styled.div`
 const BannerImg = styled.img`
   width: 2.5rem;
 `;
+
+export default React.memo(Header);

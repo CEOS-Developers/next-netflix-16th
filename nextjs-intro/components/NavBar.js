@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,7 +12,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function NavBar() {
+const NavBar = () => {
   const router = useRouter();
   return (
     <Nav>
@@ -49,7 +50,7 @@ export default function NavBar() {
       </Container>
     </Nav>
   );
-}
+};
 
 const Nav = styled.nav`
   width: 375px;
@@ -85,3 +86,5 @@ const NavText = styled.div`
   font-weight: 500;
   font-size: 8.2px;
 `;
+
+export default NavBar;
