@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation, faPlus } from '@fortawesome/free-solid-svg-icons';
 
+import Header from '../components/Header';
+
 export default function home({ data, data2, data3 }) {
   const randomPic = Number([Math.floor(Math.random() * data.results.length)]);
 
@@ -12,23 +14,10 @@ export default function home({ data, data2, data3 }) {
       <MyHead title="Home" />
       <BoxContainer>
         <BoxBanner>
-          <Header>
-            <Link href={'/home'}>
-              <BannerImg src={`/netflix.png`}></BannerImg>
-            </Link>
-            <Link href={'/tv-shows'}>
-              <BannerTag>TV Shows</BannerTag>
-            </Link>
-            <Link href={'/movies'}>
-              <BannerTag>Movies</BannerTag>
-            </Link>
-            <Link href={'/my-list'}>
-              <BannerTag>My List</BannerTag>
-            </Link>
-          </Header>
           <RandomPic
             src={`https://image.tmdb.org/t/p/original/${data.results[randomPic].poster_path}`}
           />
+          <Header />
         </BoxBanner>
         <BannerText>#2 in Nigeria Today</BannerText>
         <BoxMid>
@@ -150,21 +139,6 @@ const RandomPic = styled.img`
     rgba(0, 0, 0, 0) 87.26%,
     #000000 100%
   );
-`;
-
-const Header = styled.div`
-  width: 375px;
-  padding: 1.5rem;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  position: fixed;
-`;
-
-const BannerImg = styled.img`
-  width: 2.5rem;
 `;
 
 const BannerText = styled.div`
