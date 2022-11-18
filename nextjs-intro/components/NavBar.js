@@ -11,85 +11,45 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const NavBar = () => {
+export default function NavBar() {
   const router = useRouter();
   return (
     <Nav>
       <Container>
         <Link href="/home">
-          <div
-            className={
-              router.pathname === '/home' ? 'nav-link active' : 'nav-link'
-            }
-          >
+          <NavItem current={router.pathname === '/home'}>
             <FontAwesomeIcon icon={faHouse} size={'1x'} />
-            <div className="nav-text">Home</div>
-          </div>
+            <NavText>Home</NavText>
+          </NavItem>
         </Link>
         <Link href="/search">
-          <div
-            className={
-              router.pathname === '/search' ? 'nav-link active' : 'nav-link'
-            }
-          >
+          <NavItem current={router.pathname === '/search'}>
             <FontAwesomeIcon icon={faMagnifyingGlass} size={'1x'} />
-            <div className="nav-text">Search</div>
-          </div>
+            <NavText>Search</NavText>
+          </NavItem>
         </Link>
         <Link href="/comming-soon">
-          <div
-            className={
-              router.pathname === '/comming-soon'
-                ? 'nav-link active'
-                : 'nav-link'
-            }
-          >
+          <NavItem current={router.pathname === '/comming-soon'}>
             <FontAwesomeIcon icon={faPlay} size={'1x'} />
-            <div className="nav-text">Comming Soon</div>
-          </div>
+            <NavText>Comming Soon</NavText>
+          </NavItem>
         </Link>
         <Link href="/downloads">
-          <div
-            className={
-              router.pathname === '/downloads' ? 'nav-link active' : 'nav-link'
-            }
-          >
+          <NavItem current={router.pathname === '/downloads'}>
             <FontAwesomeIcon icon={faArrowDown} size={'1x'} />
-            <div className="nav-text">Downloads</div>
-          </div>
+            <NavText>Downloads</NavText>
+          </NavItem>
         </Link>
         <Link href="/menu">
-          <div
-            className={
-              router.pathname === '/menu' ? 'nav-link active' : 'nav-link'
-            }
-          >
+          <NavItem current={router.pathname === '/menu'}>
             <FontAwesomeIcon icon={faBars} size={'1x'} />
-            <div className="nav-text">More</div>
-          </div>
+            <NavText>More</NavText>
+          </NavItem>
         </Link>
       </Container>
-
-      <style jsx>{`
-        .active {
-          color: white;
-        }
-        .nav-link {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 5px;
-        }
-        .nav-text {
-          font-family: 'SF Pro Display';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 8.2px;
-        }
-      `}</style>
     </Nav>
   );
-};
+}
 
 const Nav = styled.nav`
   width: 375px;
@@ -111,4 +71,17 @@ const Container = styled.div`
   background: #121212;
 `;
 
-export default NavBar;
+const NavItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: ${(props) => props.current && 'white'};
+`;
+
+const NavText = styled.div`
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8.2px;
+`;
