@@ -1,70 +1,30 @@
-import { useEffect, useState } from 'react';
-import MovieModal from '../components/Modal';
-import { useInfiniteQuery } from 'react-query';
-import axios from 'axios';
-
 import MyHead from '../components/MyHead';
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import MovieModal from '../components/Modal';
+import { faMobileScreen } from '@fortawesome/free-solid-svg-icons';
+//setSearchResults를 원래 Toprated로 하고 새로 받아오는 값을 set으로 해줘서 계속 바꿔주는 것으로 해보기?
 
 export default function search({ TopRated }) {
-  const getMovieList = () =>
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=aaf81bdfd64c8485a414ab01ef93d056`
-      )
-      .then((response) => response.data);
+  const { search, handleChange, resetChat, searches } = useInput('');
+  const [modalState, setModal] = useState(false);
+  const [curMovie, setCurMov] = useState({});
 
-  useEffect(() => {
-    getMovieList();
-  }, []);
+  const newData = searches.results;
 
-  const {
-    movieData, // data를 갖고 있는 배열
-    error, // error 객체
-    fetchNextPage, // 다음 페이지를 불러오는 함수
-    hasNextPage, // 다음 페이지가 있는지 여부, Boolean
-    isFetching, // 첫 페이지 fetching 여부, Boolean, 잘 안쓰인다
-    isFetchingNextPage, // 추가 페이지 fetching 여부, Boolean
-    status,
-  } = useInfiniteQuery('movieList', getMovieList, {
-    getNextPageParam: (lastPage, page) => (hasNextPage ? Number : 0),
-  });
+  const openModal = (movie) => {
+    setModal(true);
+    setCurMov(movie);
+  };
 
-  // const { search, handleChange, resetChat, searches } = useInput('');
-  // const [modalState, setModal] = useState(false);
-  // const [curMovie, setCurMov] = useState({});
-
-  // const newData = searches.results;
-
-  // const openModal = (movie) => {
-  //   setModal(true);
-  //   setCurMov(movie);
-  // };
-
-  // //searchsms 한단어부터 시작 이걸 async로 넘겨줘서 query값으로 가져오기
-  // const data = TopRated.results;
-
+  //searchsms 한단어부터 시작 이걸 async로 넘겨줘서 query값으로 가져오기
+  const data = TopRated.results;
   return (
     <div>
       <MyHead title="Search" />
-
-      {status === 'loading' && <p>불러오는 중</p>}
-
-      {status === 'error' && <p>{error.message}</p>}
-
-      {status === 'success' &&
-        movieData.results.map((movie) => (
-          <div key={movie.id}>
-            <h3>{movie.original_title}</h3>
-          </div>
-        ))}
-
-      <button onClick={() => fetchNextPage()}>더 불러오기</button>
-
-      {isFetchingNextPage && <p>계속 불러오는 중</p>}
-
-      {/* <SearchForm>
+      <SearchForm>
         <SmallImg src="/searchglass.png"></SmallImg>
         <Search
           value={search}
@@ -116,7 +76,7 @@ export default function search({ TopRated }) {
 
           {modalState && <MovieModal {...curMovie} setModalOpen={setModal} />}
         </Container>
-      )} */}
+      )}
     </div>
   );
 }
