@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, use } from 'react';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from 'react-query';
 import styled from 'styled-components';
@@ -23,8 +23,6 @@ export default function Comming() {
     data, // data를 갖고 있는 배열
     error, // error 객체
     fetchNextPage, // 다음 페이지를 불러오는 함수
-    hasNextPage, // 다음 페이지가 있는지 여부, Boolean
-    isFetching, // 첫 페이지 fetching 여부, Boolean, 잘 안쓰인다
     isFetchingNextPage, // 추가 페이지 fetching 여부, Boolean
     status,
   } = useInfiniteQuery('movieList', getMovieList, {
@@ -54,7 +52,16 @@ export default function Comming() {
             data.pages.map((page) =>
               page.results.map((movie) => (
                 <div key={movie.id}>
-                  <MovieTitle>{movie.original_title}</MovieTitle>
+                  <MovieWrapper>
+                    <MovieImg
+                      src={
+                        movie.backdrop_path === null
+                          ? `/netflix2.png`
+                          : `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
+                      }
+                    ></MovieImg>
+                    <MovieTitle>{movie.original_title}</MovieTitle>
+                  </MovieWrapper>
                 </div>
               ))
             )}
@@ -74,8 +81,22 @@ const Container = styled.div`
 
 const Content = styled.div`
   color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const MovieWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const MovieTitle = styled.div`
   padding: 1rem;
+`;
+
+const MovieImg = styled.img`
+  width: 146px;
+  height: 76px;
+  object-fit: cover;
 `;
